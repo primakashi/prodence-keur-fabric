@@ -1,0 +1,2 @@
+docker exec prodence peer chaincode install -n kendaraancontract -v 0 -p /opt/gopath/src/github.com/contract -l node
+docker exec prodence peer chaincode instantiate -n kendaraancontract -v 0 -l node -c '{"Args":["org.keurnet.kendaraan:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
