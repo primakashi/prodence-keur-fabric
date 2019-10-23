@@ -2,7 +2,7 @@
 
 const StateList = require('./../../ledger-api/statelist.js');
 
-const Kendaraan = require('./kendaraan.js');
+const Kendaraan = require('./kendaraan.js.js');
 
 class KendaraanList extends StateList {
     constructor(ctx) {

@@ -2,7 +2,7 @@
 
 const { Contract, Context } = require('fabric-contract-api');
 
-const Kendaraan = require('./kendaraan.js');
+const Kendaraan = require('./kendaraan.js.js');
 const KendaraanList = require('./kendaraanlist');
 
 class KendaraanContext extends Context {

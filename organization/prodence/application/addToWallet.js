@@ -1,22 +1,14 @@
-/*
- *  SPDX-License-Identifier: Apache-2.0
- */
-
 'use strict';
 
-// Bring key classes into scope, most importantly Fabric SDK network class
 const fs = require('fs');
 const { FileSystemWallet, X509WalletMixin } = require('fabric-network');
 const path = require('path');
 
 const fixtures = path.resolve(__dirname, '../../../basic-network');
 
-// A wallet stores a collection of identities
-const wallet = new FileSystemWallet('../identity/user/isabella/wallet');
+const wallet = new FileSystemWallet('../identity/user/admin/wallet');
 
 async function main() {
-
-    // Main try/catch block
     try {
 
         // Identity to credentials to be stored in the wallet
