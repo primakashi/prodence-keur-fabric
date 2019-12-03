@@ -67,7 +67,7 @@ class Kendaraan extends State {
     }
 
     static createInstance(srut, no_stnk, no_kendaraan, no_ktp, no_mesin, no_rangka, nama_pemilik, merk_pabrik, tipe_kendaraan, mulai_diperginakan, alamat_garasi, kategori_kendaraan, kategori_no_kendaraan) {
-        return new CommercialPaper({ srut, no_stnk, no_kendaraan, no_ktp, no_mesin, no_rangka, nama_pemilik, merk_pabrik, tipe_kendaraan, mulai_diperginakan, alamat_garasi, kategori_kendaraan, kategori_no_kendaraan });
+        return new Kendaraan({ srut, no_stnk, no_kendaraan, no_ktp, no_mesin, no_rangka, nama_pemilik, merk_pabrik, tipe_kendaraan, mulai_diperginakan, alamat_garasi, kategori_kendaraan, kategori_no_kendaraan });
     }
 
     static getClass() {

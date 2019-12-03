@@ -79,7 +79,7 @@ class KendaraanContract extends Contract {
         let kendaraan = await ctx.kendaraanList.getKendaraan(kendaraanKey);
 
         // Check paper is not REDEEMED
-        if (paper.isRedeemed()) {
+        if (kendaraan.isRedeemed()) {
             throw new Error('Paper ' + no_stnk + no_kendaraan + ' already redeemed');
         }
 
