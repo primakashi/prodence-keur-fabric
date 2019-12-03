@@ -1,0 +1,73 @@
+name: "prodence-keur-networks"
+
+x-type: "hlfv1"
+
+description: "A gateway connection file for the PaperNet networks"
+
+version: "1.0"
+
+channels:
+  prodence:
+   orderers:
+      - orderer.keur.com
+  peers:
+    peer1.keur.com:
+      endorsingPeer: true
+      chaincodeQuery: true
+      ledgerQuery: true
+      eventSource: true
+
+  chaincodes:
+    - example02:v1
+      - marbles:1.0
+
+organizations:
+  Org1:
+    mspid: keurMSP
+
+    peers:
+      - peer1.keur.com
+
+    certificateAuthorities:
+      - ca-keur
+    adminPrivateKey:
+      path: organization/prodence/users/Admin@keur/keystore/9022d671ceedbb24af3ea69b5a8136cc64203df6b9920e26f48123fcfcb1d2e9_sk
+    signedCert:
+      path: organization/prodence/users/Admin@keur.com/signcerts/Admin@keur.com-cert.pem
+
+orderers:
+  orderer.keur.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.prodence.com
+    tlsCACerts:
+      path: organization/prodence/orderer/orderer.keur.com/tlscacerts/prodence.com-cert.pem
+
+peers:
+  peer1.keur.com:
+    url: grpcs://localhost:7051
+
+    grpcOptions:
+      ssl-target-name-override: peer1.keur.com
+      request-timeout: 120
+
+    tlsCACerts:
+      path: certificates/keur/keur.com-cert.pem
+
+certificateAuthorities:
+  ca-org1:
+    url: https://localhost:7054
+    # the properties specified under this object are passed to the 'http' client verbatim when
+    # making the request to the Fabric-CA server
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: organization/prodence/ca/keur.com-cert.pem
+
+    # Fabric-CA supports dynamic user enrollment via REST APIs. A "root" user, a.k.a registrar, is
+    # needed to enroll and invoke new users.
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    # [Optional] The optional name of the CA.
+    caName: ca-keur

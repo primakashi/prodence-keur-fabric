@@ -5,23 +5,23 @@ SPDX-License-Identifier: Apache-2.0
 'use strict';
 
 // Utility class for ledger state
-const State = require('../../ledger-api/state.js');
+const State = require('./../ledger-api/state.js');
 
 // Enumerate commercial paper state values
 const cpState = {
-    CREATED: 1,
-    UPDATED: 2,
-    DELETED: 3
+    ISSUED: 1,
+    TRADING: 2,
+    REDEEMED: 3
 };
 
 /**
  * CommercialPaper class extends State class
  * Class will be used by application and smart contract to define a paper
  */
-class ProdenceKeur extends State {
+class CommercialPaper extends State {
 
     constructor(obj) {
-        super(ProdenceKeur.getClass(), [obj.issuer, obj.stuk]);
+        super(CommercialPaper.getClass(), [obj.issuer, obj.paperNumber]);
         Object.assign(this, obj);
     }
 
@@ -47,32 +47,32 @@ class ProdenceKeur extends State {
     /**
      * Useful methods to encapsulate commercial paper states
      */
-    setCreatedData() {
-        this.currentState = cpState.CREATED;
+    setIssued() {
+        this.currentState = cpState.ISSUED;
     }
 
-    setUpdateData() {
-        this.currentState = cpState.UPDATED;
+    setTrading() {
+        this.currentState = cpState.TRADING;
     }
 
-    setDeleteData() {
-        this.currentState = cpState.DELETED;
+    setRedeemed() {
+        this.currentState = cpState.REDEEMED;
     }
 
-    isCreateData() {
-        return this.currentState === cpState.CREATED;
+    isIssued() {
+        return this.currentState === cpState.ISSUED;
     }
 
-    isUpdateData() {
-        return this.currentState === cpState.UPDATED;
+    isTrading() {
+        return this.currentState === cpState.TRADING;
     }
 
-    isDeleteData() {
-        return this.currentState === cpState.DELETED;
+    isRedeemed() {
+        return this.currentState === cpState.REDEEMED;
     }
 
     static fromBuffer(buffer) {
-        return ProdenceKeur.deserialize(buffer);
+        return CommercialPaper.deserialize(buffer);
     }
 
     toBuffer() {
@@ -84,19 +84,19 @@ class ProdenceKeur extends State {
      * @param {Buffer} data to form back into the object
      */
     static deserialize(data) {
-        return State.deserializeClass(data, ProdenceKeur);
+        return State.deserializeClass(data, CommercialPaper);
     }
 
     /**
      * Factory method to create a commercial paper object
      */
-    static createInstance(stuk, no_ktp, no_bkpb, no_stnk, no_mesin, no_rangka, no_ijin_trayek, no_uji_tipe, no_kir) {
-        return new ProdenceKeur({ stuk, no_ktp, no_bkpb, no_stnk, no_mesin, no_rangka, no_ijin_trayek, no_uji_tipe, no_kir});
+    static createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, faceValue) {
+        return new CommercialPaper({ issuer, paperNumber, issueDateTime, maturityDateTime, faceValue });
     }
 
     static getClass() {
-        return 'org.papernet.prodencekeur';
+        return 'org.papernet.commercialpaper';
     }
 }
 
-module.exports = ProdenceKeur;
+module.exports = CommercialPaper;

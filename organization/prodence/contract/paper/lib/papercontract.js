@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 const { Contract, Context } = require('fabric-contract-api');
 
 // PaperNet specifc classes
-const CommercialPaper = require('./kendaraan/kendaraan.js/index.js.js');
+const CommercialPaper = require('./paper.js');
 const PaperList = require('./paperlist.js');
 
 /**
@@ -44,8 +44,11 @@ class CommercialPaperContract extends Contract {
 
     /**
      * Instantiate to perform any setup of the ledger that might be required.
-     * @param {Context} ctx
+     * @param {Context} ctx the transaction context
+     */
     async instantiate(ctx) {
+        // No implementation required with this example
+        // It could be where data migration is performed, if necessary
         console.log('Instantiate the contract');
     }
 
@@ -59,16 +62,16 @@ class CommercialPaperContract extends Contract {
      * @param {String} maturityDateTime paper maturity date
      * @param {Integer} faceValue face value of paper
     */
-    async issue(ctx, stuk, no_ktp, no_bkpb, no_stnk, no_mesin, no_rangka, no_ijin_trayek, no_uji_tipe, no_kir) {
+    async issue(ctx, issuer, paperNumber, issueDateTime, maturityDateTime, faceValue) {
 
         // create an instance of the paper
-        let paper = CommercialPaper.createInstance(stuk, no_ktp, no_bkpb, no_stnk, no_mesin, no_rangka, no_ijin_trayek, no_uji_tipe, no_kir);
+        let paper = CommercialPaper.createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, faceValue);
 
         // Smart contract, rather than paper, moves paper into ISSUED state
         paper.setIssued();
 
         // Newly issued paper is owned by the issuer
-        paper.setOwner(no_ktp);
+        paper.setOwner(issuer);
 
         // Add the paper to the list of all similar commercial papers in the ledger world state
         await ctx.paperList.addPaper(paper);
