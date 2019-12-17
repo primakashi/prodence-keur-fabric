@@ -45,3 +45,8 @@ access(app);
 const user = require('./routes/user');
 
 user(app);
+
+// user vehicle
+const vehicle = require('./routes/vehicle');
+
+vehicle(app);
