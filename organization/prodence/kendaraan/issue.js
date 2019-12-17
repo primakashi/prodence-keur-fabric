@@ -5,8 +5,8 @@ const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
 const Kendaraan = require('../contract/kendaraan/lib/kendaraan.js');
 const path = require('path');
-var yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
-var walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
+let yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
+let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 
 const wallet = new FileSystemWallet(walletPath);
 const Vehicle = () => {};
@@ -38,17 +38,11 @@ Vehicle.createVehicle = (data, result) =>{
             console.log('Process issue transaction response.'+issueResponse);
             let kendaraan = Kendaraan.fromBuffer(issueResponse);
 
-<<<<<<< HEAD
-            delete kendaraan.class
-            delete kendaraan.key
-            delete kendaraan.currentState
-=======
-        console.log(kendaraan);
+            delete kendaraan.class;
+            delete kendaraan.key;
+            delete kendaraan.currentState;
 
-    } catch (error) {
->>>>>>> update contract kendaraan
-
-            result(null, {'data' : kendaraan});
+            result(null, {data : kendaraan});
 
             console.log(`${kendaraan.srut} kendaraan : ${kendaraan.no_kendaraan} successfully issued for value ${kendaraan.no_ktp}`);
             console.log('Transaction complete.');
@@ -57,14 +51,8 @@ Vehicle.createVehicle = (data, result) =>{
 
             result(true, null);
 
-<<<<<<< HEAD
             console.log(`Error processing transaction. ${error}`);
             console.log(error.stack);
-=======
-        console.log(kendaraan);
-
-    } catch (error) {
->>>>>>> 90f78f1cb427dcb097cb02838f859d5fb700b7a1
 
         } finally {
 
@@ -89,6 +77,6 @@ Vehicle.createVehicle = (data, result) =>{
         process.exit(-1);
 
     });
-}
+};
 
 module.exports = Vehicle;

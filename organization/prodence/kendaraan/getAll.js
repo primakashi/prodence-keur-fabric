@@ -27,7 +27,7 @@ async function main() {
         const contract = await network.getContract('kendaraancontract');
 
         console.log('Submit kendaraan issue transaction.');
-        const issueResponse = await contract.submitTransaction('getkendaraan', '11111', 'AA3214BE' );
+        const issueResponse = await contract.submitTransaction('getkendaraan', '875048', 'AA8474UE' );
 
         console.log('Process issue transaction response.'+issueResponse);
         let kendaraan = Kendaraan.fromBuffer(issueResponse);
