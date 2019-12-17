@@ -26,16 +26,15 @@ async function main() {
         console.log('Use org.prodence.kendaraan smart contract.');
         const contract = await network.getContract('kendaraancontract');
 
-        console.log('Submit kendaraan issue transaction.');
-        const issueResponse = await contract.submitTransaction('create', '0001', '11111', 'AA3214BE', '3304809386093860938', '0808502385', '48029840', 'Matsui Jurina', 'BMW', 'mobil', '2019', 'Jl. Suci No 19', 'Mobil', 'Pribadi');
+        console.log('Submit commercial paper redeem transaction.');
+        const redeemResponse = await contract.submitTransaction('delete', '11111', 'AA3214BE', '88013081048098148');
 
-        console.log('Process issue transaction response.'+issueResponse);
-        let kendaraan = Kendaraan.fromBuffer(issueResponse);
+        console.log('Process redeem transaction response.');
 
-        console.log(`${kendaraan.srut} kendaraan : ${kendaraan.no_kendaraan} successfully issued for value ${kendaraan.no_ktp}`);
+        let kendaraan = Kendaraan.fromBuffer(redeemResponse);
+
+        console.log(`${kendaraan.no_stnl} commercial paper : ${kendaraan.no_kendaraan} successfully redeemed with ${kendaraan.no_ktp}`);
         console.log('Transaction complete.');
-
-        console.log(kendaraan);
 
     } catch (error) {
 
@@ -49,16 +48,14 @@ async function main() {
         gateway.disconnect();
 
     }
-
 }
-
 main().then(() => {
 
-    console.log('Issue program complete.');
+    console.log('Redeem program complete.');
 
 }).catch((e) => {
 
-    console.log('Issue program exception.');
+    console.log('Redeem program exception.');
     console.log(e);
     console.log(e.stack);
     process.exit(-1);

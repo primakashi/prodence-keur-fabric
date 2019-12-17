@@ -7,7 +7,8 @@ const Kendaraan = require('../contract/kendaraan/lib/kendaraan.js');
 
 const wallet = new FileSystemWallet('../identity/user/adminkeur/wallet');
 
-async function main() {
+// Main program function
+async function main () {
     const gateway = new Gateway();
     try {
         const userName = 'User1@org1.prodence.com';
@@ -17,6 +18,7 @@ async function main() {
             wallet: wallet,
             discovery: { enabled:false, asLocalhost: true }
         };
+
         console.log('Connect to Fabric gateway.');
         await gateway.connect(connectionProfile, connectionOptions);
 
@@ -27,14 +29,15 @@ async function main() {
         const contract = await network.getContract('kendaraancontract');
 
         console.log('Submit kendaraan issue transaction.');
-        const issueResponse = await contract.submitTransaction('create', '0001', '11111', 'AA3214BE', '3304809386093860938', '0808502385', '48029840', 'Matsui Jurina', 'BMW', 'mobil', '2019', 'Jl. Suci No 19', 'Mobil', 'Pribadi');
+        const updateResponse = await contract.submitTransaction('update', '11111', 'AA3214BE', '3304809386093860938', '88013081048098148', 'Yoruichi', 'Distcit 9');
 
-        console.log('Process issue transaction response.'+issueResponse);
-        let kendaraan = Kendaraan.fromBuffer(issueResponse);
+        // process response
+        console.log('Process buy transaction response.');
 
-        console.log(`${kendaraan.srut} kendaraan : ${kendaraan.no_kendaraan} successfully issued for value ${kendaraan.no_ktp}`);
+        let kendaraan = Kendaraan.fromBuffer(updateResponse);
+
+        console.log(`${kendaraan.no_stnk} commercial paper : ${kendaraan.no_kendaraan} successfully purchased by ${kendaraan.no_ktp}`);
         console.log('Transaction complete.');
-
         console.log(kendaraan);
 
     } catch (error) {
@@ -49,16 +52,14 @@ async function main() {
         gateway.disconnect();
 
     }
-
 }
-
 main().then(() => {
 
-    console.log('Issue program complete.');
+    console.log('Buy program complete.');
 
 }).catch((e) => {
 
-    console.log('Issue program exception.');
+    console.log('Buy program exception.');
     console.log(e);
     console.log(e.stack);
     process.exit(-1);
