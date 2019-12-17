@@ -38,9 +38,15 @@ Vehicle.createVehicle = (data, result) =>{
             console.log('Process issue transaction response.'+issueResponse);
             let kendaraan = Kendaraan.fromBuffer(issueResponse);
 
+<<<<<<< HEAD
             delete kendaraan.class
             delete kendaraan.key
             delete kendaraan.currentState
+=======
+        console.log(kendaraan);
+
+    } catch (error) {
+>>>>>>> update contract kendaraan
 
             result(null, {'data' : kendaraan});
 
