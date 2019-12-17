@@ -28,69 +28,50 @@ class KendaraanContract extends Contract {
         console.log('Instantiate the contract');
     }
 
-    async create(ctx, srut, no_stnk, no_kendaraan, no_ktp, no_mesin, no_rangka, nama_pemilik, merk_pabrik, tipe_kendaraan, mulai_diperginakan, alamat_garasi, kategori_kendaraan, kategori_no_kendaraan) {
-
-        let kendaraan = Kendaraan.createInstance(srut, no_stnk, no_kendaraan, no_ktp, no_mesin, no_rangka, nama_pemilik, merk_pabrik, tipe_kendaraan, mulai_diperginakan, alamat_garasi, kategori_kendaraan, kategori_no_kendaraan);
-
-        kendaraan.setCreated();
-
-        // Newly issued paper is owned by the issuer
-        // kendaraan.setOwner(issuer);
-
-        // Add the paper to the list of all similar commercial papers in the ledger world state
-        await ctx.kendaraanList.addKendaraan(kendaraan);
-
-        // Must return a serialized paper to caller of smart contract
+    async getkendaraan(ctx, no_stnk, no_kendaraan) {
+        let kendaraanKey = Kendaraan.makeKey([no_stnk, no_kendaraan]);
+        let kendaraan = await ctx.kendaraanList.getKendaraan(kendaraanKey);
         return kendaraan;
     }
 
-    async buy(ctx, no_stnk, no_kendaraan) {
+    async create(ctx, srut, no_stnk, no_kendaraan, no_ktp, no_mesin, no_rangka, nama_pemilik, merk_pabrik, tipe_kendaraan, mulai_dipergunakan, alamat_garasi, kategori_kendaraan, kategori_no_kendaraan) {
+        let kendaraan = Kendaraan.createInstance(srut, no_stnk, no_kendaraan, no_ktp, no_mesin, no_rangka, nama_pemilik, merk_pabrik, tipe_kendaraan, mulai_dipergunakan, alamat_garasi, kategori_kendaraan, kategori_no_kendaraan);
+        kendaraan.setCreated();
+        await ctx.kendaraanList.addKendaraan(kendaraan);
+        return kendaraan;
+    }
 
-        // Retrieve the current paper using key fields provided
+    async update(ctx, no_stnk, no_kendaraan, no_ktp, newKTP, nama_pemilik, alamat_garasi) {
         let kendaraanKey = Kendaraan.makeKey([no_stnk, no_kendaraan]);
         let kendaraan = await ctx.kendaraanList.getKendaraan(kendaraanKey);
-
-        // Validate current owner
-        // if (kendaraan.getOwner() !== currentOwner) {
-        //     throw new Error('Paper ' + issuer + paperNumber + ' is not owned by ' + currentOwner);
-        // }
-
-        // First buy moves state from ISSUED to TRADING
+        if (kendaraan.getKTP() !== no_ktp) {
+            throw new Error('Kendaraan ' + no_stnk + ' is not owned by ' + no_ktp);
+        }
         if (kendaraan.isCreated()) {
             kendaraan.setUpdated();
         }
-
-        // Check paper is not already REDEEMED
-        // if (kendaraan.isUpdated()) {
-        //     kendaraan.setOwner(newOwner);
-        // } else {
-        //     throw new Error('Paper ' + issuer + paperNumber + ' is not trading. Current state = ' +paper.getCurrentState());
-        // }
-
-        // Update the paper
+        if (kendaraan.isUpdated()) {
+            kendaraan.setKTP(newKTP);
+            kendaraan.setNamaPemilik(nama_pemilik);
+            kendaraan.setAlamatGarasi(alamat_garasi);
+        } else {
+            throw new Error('Kendaraan ' + no_stnk +  ' is cant be updated. Current state = ' + kendaraan.getCurrentState());
+        }
         await ctx.kendaraanList.updateKendaraan(kendaraan);
         return kendaraan;
     }
 
-    async delete(ctx, no_stnk, no_kendaraan, redeemingOwner, redeemDateTime) {
-
+    async delete(ctx, no_stnk, no_kendaraan, no_ktp) {
         let kendaraanKey = Kendaraan.makeKey([no_stnk, no_kendaraan]);
-
         let kendaraan = await ctx.kendaraanList.getKendaraan(kendaraanKey);
-
-        // Check paper is not REDEEMED
-        if (kendaraan.isRedeemed()) {
+        if (kendaraan.isDeleted()) {
             throw new Error('Paper ' + no_stnk + no_kendaraan + ' already redeemed');
         }
-
-        // Verify that the redeemer owns the commercial paper before redeeming it
-        // if (paper.getOwner() === redeemingOwner) {
-        //     paper.setOwner(paper.getIssuer());
-        //     paper.setRedeemed();
-        // } else {
-        //     throw new Error('Redeeming owner does not own paper' + issuer + paperNumber);
-        // }
-
+        if (kendaraan.getKTP() === no_ktp) {
+            kendaraan.setDeleted();
+        } else {
+            throw new Error('Redeeming owner does not own paper' + no_stnk + no_kendaraan);
+        }
         await ctx.kendaraanList.updateKendaraan(kendaraan);
         return kendaraan;
     }

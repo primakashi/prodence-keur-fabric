@@ -14,6 +14,10 @@ class Kendaraan extends State {
         Object.assign(this, obj);
     }
 
+    getKendaraa() {
+        return this.obj;
+    }
+
     getSTNK() {
         return this.no_stnk;
     }
@@ -28,6 +32,14 @@ class Kendaraan extends State {
 
     setKTP(newKTP) {
         this.no_ktp = newKTP;
+    }
+
+    setNamaPemilik(newPemilik) {
+        this.nama_pemilik = newPemilik;
+    }
+
+    setAlamatGarasi(newGarasi) {
+        this.alamat_garasi = newGarasi;
     }
 
     setCreated() {
