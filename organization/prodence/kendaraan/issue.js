@@ -57,8 +57,14 @@ Vehicle.createVehicle = (data, result) =>{
 
             result(true, null);
 
+<<<<<<< HEAD
             console.log(`Error processing transaction. ${error}`);
             console.log(error.stack);
+=======
+        console.log(kendaraan);
+
+    } catch (error) {
+>>>>>>> 90f78f1cb427dcb097cb02838f859d5fb700b7a1
 
         } finally {
 
