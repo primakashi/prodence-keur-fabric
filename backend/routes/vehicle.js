@@ -4,5 +4,14 @@ module.exports = (vehicle) => {
     const vehicleController = require('../controllers/vehicle');
 
     vehicle.route('/api/vehicle')
+        .get(vehicleController.getAllVehicle);
+
+    vehicle.route('/api/vehicle')
         .post(vehicleController.createVehicle);
+
+    vehicle.route('/api/vehicle')
+        .put(vehicleController.updateVehicle);
+
+    vehicle.route('/api/vehicle')
+        .delete(vehicleController.deleteVehicle);
 };

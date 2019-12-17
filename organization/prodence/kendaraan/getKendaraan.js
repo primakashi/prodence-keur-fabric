@@ -11,7 +11,8 @@ let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 const wallet = new FileSystemWallet(walletPath);
 const Vehicle = () => {};
 
-Vehicle.deleteVehicle = (data, result) =>{
+Vehicle.createVehicle = (data, result) =>{
+
     async function main() {
         const gateway = new Gateway();
         try {
@@ -31,20 +32,21 @@ Vehicle.deleteVehicle = (data, result) =>{
             console.log('Use org.prodence.kendaraan smart contract.');
             const contract = await network.getContract('kendaraancontract');
 
-            console.log('Submit commercial paper redeem transaction.');
-            const redeemResponse = await contract.submitTransaction('delete', data.no_stnk, data.no_kendaraan, data.no_ktp);
+            console.log('Submit kendaraan issue transaction.');
+            const issueResponse = await contract.submitTransaction('getkendaraan', data.no_stnk, data.no_kendaraan );
 
-            console.log('Process redeem transaction response.');
+            console.log('Process issue transaction response.'+issueResponse);
+            let kendaraan = Kendaraan.fromBuffer(issueResponse);
 
-            let kendaraan = Kendaraan.fromBuffer(redeemResponse);
             delete kendaraan.class;
             delete kendaraan.key;
-            delete kendaraan.currentState;
 
             result(null, {data : kendaraan});
 
-            console.log(`${kendaraan.no_stnl} commercial paper : ${kendaraan.no_kendaraan} successfully redeemed with ${kendaraan.no_ktp}`);
+            console.log(`${kendaraan.srut} kendaraan : ${kendaraan.no_kendaraan} successfully issued for value ${kendaraan.no_ktp}`);
             console.log('Transaction complete.');
+
+            console.log(kendaraan);
 
         } catch (error) {
             result(true, null);
@@ -59,20 +61,23 @@ Vehicle.deleteVehicle = (data, result) =>{
             gateway.disconnect();
 
         }
+
     }
+
     main().then(() => {
 
-        console.log('Redeem program complete.');
+        console.log('Issue program complete.');
 
     }).catch((e) => {
         result(true, null);
 
-        console.log('Redeem program exception.');
+        console.log('Issue program exception.');
         console.log(e);
         console.log(e.stack);
         process.exit(-1);
 
     });
+
 }
 
 module.exports = Vehicle;
