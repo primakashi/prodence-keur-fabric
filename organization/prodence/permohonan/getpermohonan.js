@@ -11,7 +11,7 @@ let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 const wallet = new FileSystemWallet(walletPath);
 const PosPermohonan = () => {};
 
-// PosPermohonan.createPermohonan = (data, result) =>{
+PosPermohonan.getPermohonan = (data, result) =>{
 
     async function main() {
         const gateway = new Gateway();
@@ -33,7 +33,7 @@ const PosPermohonan = () => {};
             const contract = await network.getContract('permohonancontract');
 
             console.log('Submit kendaraan issue transaction.');
-            const issueResponse = await contract.submitTransaction('getpermohonan','87387983729832', 'AA2345UE', );
+            const issueResponse = await contract.submitTransaction('getpermohonan',data.no_pemeriksaan,data.no_kendaraan );
 
             console.log('Process issue transaction response.'+issueResponse);
             let permohonan = Permohonan.fromBuffer(issueResponse);
@@ -41,7 +41,7 @@ const PosPermohonan = () => {};
             delete permohonan.class;
             delete permohonan.key;
 
-            // result(null, {data : permohonan});
+            result(null, {data : permohonan});
 
             console.log(`${permohonan.no_pemeriksaan} kendaraan : ${permohonan.no_kendaraan} successfully issued for value ${permohonan.no_pemeriksaan}`);
             console.log('Transaction complete.');
@@ -49,7 +49,7 @@ const PosPermohonan = () => {};
 
         } catch (error) {
 
-            // result(true, null);
+            result(true, null);
 
             console.log(`Error processing transaction. ${error}`);
             console.log(error.stack);
@@ -69,7 +69,7 @@ const PosPermohonan = () => {};
         console.log('Issue program complete.');
 
     }).catch((e) => {
-        // result(true, null);
+        result(true, null);
 
         console.log('Issue program exception.');
         console.log(e);
@@ -77,6 +77,6 @@ const PosPermohonan = () => {};
         process.exit(-1);
 
     });
-// };
+};
 
-// module.exports = PosPermohonan;
+module.exports = PosPermohonan;

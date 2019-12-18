@@ -33,7 +33,7 @@ PosPermohonan.createPermohonan = (data, result) =>{
             const contract = await network.getContract('permohonancontract');
 
             console.log('Submit kendaraan issue transaction.');
-            const issueResponse = await contract.submitTransaction('create', '1111', 'AA2345UE', '3330898748794', '879479487', '8480980948', '874408048', '840980484', 'verified', '89000', '22-12-2019', '87387983729832', 'Bandung', '874870849');
+            const issueResponse = await contract.submitTransaction('create',data.no_stnk,data.no_kendaraan,data.no_ktp,data.no_mesin,data.no_rangka,data.buku_uji,data.no_laporan,data.status,data.jarak_pemaikaian,data.tgl_pemeriksaan,data.no_pemeriksaan,data.lokasi_pengujian,data.no_kode);
 
             console.log('Process issue transaction response.'+issueResponse);
             let permohonan = Permohonan.fromBuffer(issueResponse);
@@ -42,14 +42,14 @@ PosPermohonan.createPermohonan = (data, result) =>{
             delete permohonan.key;
             delete permohonan.currentState;
 
-            // result(null, {data : permohonan});
+            result(null, {data : permohonan});
 
             console.log(`${permohonan.no_pemeriksaan} kendaraan : ${permohonan.no_kendaraan} successfully issued for value ${permohonan.no_pemeriksaan}`);
             console.log('Transaction complete.');
 
         } catch (error) {
 
-            // result(true, null);
+            result(true, null);
 
             console.log(`Error processing transaction. ${error}`);
             console.log(error.stack);
@@ -69,7 +69,7 @@ PosPermohonan.createPermohonan = (data, result) =>{
         console.log('Issue program complete.');
 
     }).catch((e) => {
-        // result(true, null);
+        result(true, null);
 
         console.log('Issue program exception.');
         console.log(e);
