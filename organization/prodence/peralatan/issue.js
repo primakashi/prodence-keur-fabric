@@ -33,7 +33,7 @@ PosPeralatan.createPeralatan = (data, result) =>{
             const contract = await network.getContract('peralatancontract');
 
             console.log('Submit kendaraan issue transaction.');
-            const issueResponse = await contract.submitTransaction('create','11111', 'AA235UE', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'false', 'hold');
+            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan.toString(), data.no_kendaraan.toString(), data.no_rangka.toString(), data.pelat_pabrik_pembuatnya.toString(), data.pelat_nomor.toString(), data.tulisan.toString(), data.penghapus_kaca_dapan.toString(), data.klakson.toString(), data.kaca_spion.toString(), data.pandangan_ke_depan.toString(), data.kaca_penawar_sinar.toString(), data.alat_pengendalian.toString(), data.lampu_indikasi.toString(), data.speedometer.toString(), data.perlangkapan.toString(), data.status.toString());
 
             console.log('Process issue transaction response.'+issueResponse);
             let peralatan = Peralatan.fromBuffer(issueResponse);
@@ -41,6 +41,21 @@ PosPeralatan.createPeralatan = (data, result) =>{
             delete peralatan.class;
             delete peralatan.key;
             delete peralatan.currentState;
+
+            peralatan.no_rangka = (peralatan.no_rangka == 'true');
+            peralatan.pelat_pabrik_pembuatnya = (peralatan.pelat_pabrik_pembuatnya == 'true');
+            peralatan.pelat_nomor = (peralatan.pelat_nomor == 'true');
+            peralatan.tulisan = (peralatan.tulisan == 'true');
+            peralatan.penghapus_kaca_dapan = (peralatan.penghapus_kaca_dapan == 'true');
+            peralatan.klakson = (peralatan.klakson == 'true');
+            peralatan.kaca_spion = (peralatan.kaca_spion == 'true');
+            peralatan.pandangan_ke_depan = (peralatan.pandangan_ke_depan == 'true');
+            peralatan.kaca_penawar_sinar = (peralatan.kaca_penawar_sinar == 'true');
+            peralatan.alat_pengendalian = (peralatan.alat_pengendalian == 'true');
+            peralatan.lampu_indikasi = (peralatan.lampu_indikasi == 'true');
+            peralatan.speedometer = (peralatan.speedometer == 'true');
+            peralatan.perlangkapan = (peralatan.perlangkapan == 'true');
+            peralatan.status = (peralatan.status == 'true');
 
             result(null, {data : peralatan});
 
