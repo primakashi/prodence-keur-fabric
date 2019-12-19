@@ -50,3 +50,8 @@ user(app);
 const vehicle = require('./routes/vehicle');
 
 vehicle(app);
+
+// user request
+const request = require('./routes/request');
+
+request(app);
