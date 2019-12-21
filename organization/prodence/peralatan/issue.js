@@ -42,20 +42,19 @@ PosPeralatan.createPeralatan = (data, result) =>{
             delete peralatan.key;
             delete peralatan.currentState;
 
-            peralatan.no_rangka = (peralatan.no_rangka == 'true');
-            peralatan.pelat_pabrik_pembuatnya = (peralatan.pelat_pabrik_pembuatnya == 'true');
-            peralatan.pelat_nomor = (peralatan.pelat_nomor == 'true');
-            peralatan.tulisan = (peralatan.tulisan == 'true');
-            peralatan.penghapus_kaca_dapan = (peralatan.penghapus_kaca_dapan == 'true');
-            peralatan.klakson = (peralatan.klakson == 'true');
-            peralatan.kaca_spion = (peralatan.kaca_spion == 'true');
-            peralatan.pandangan_ke_depan = (peralatan.pandangan_ke_depan == 'true');
-            peralatan.kaca_penawar_sinar = (peralatan.kaca_penawar_sinar == 'true');
-            peralatan.alat_pengendalian = (peralatan.alat_pengendalian == 'true');
-            peralatan.lampu_indikasi = (peralatan.lampu_indikasi == 'true');
-            peralatan.speedometer = (peralatan.speedometer == 'true');
-            peralatan.perlangkapan = (peralatan.perlangkapan == 'true');
-            peralatan.status = (peralatan.status == 'true');
+            peralatan.no_rangka = (peralatan.no_rangka === 'true');
+            peralatan.pelat_pabrik_pembuatnya = (peralatan.pelat_pabrik_pembuatnya === 'true');
+            peralatan.pelat_nomor = (peralatan.pelat_nomor === 'true');
+            peralatan.tulisan = (peralatan.tulisan === 'true');
+            peralatan.penghapus_kaca_dapan = (peralatan.penghapus_kaca_dapan === 'true');
+            peralatan.klakson = (peralatan.klakson === 'true');
+            peralatan.kaca_spion = (peralatan.kaca_spion === 'true');
+            peralatan.pandangan_ke_depan = (peralatan.pandangan_ke_depan === 'true');
+            peralatan.kaca_penawar_sinar = (peralatan.kaca_penawar_sinar === 'true');
+            peralatan.alat_pengendalian = (peralatan.alat_pengendalian === 'true');
+            peralatan.lampu_indikasi = (peralatan.lampu_indikasi === 'true');
+            peralatan.speedometer = (peralatan.speedometer === 'true');
+            peralatan.perlangkapan = (peralatan.perlangkapan === 'true');
 
             result(null, {data : peralatan});
 

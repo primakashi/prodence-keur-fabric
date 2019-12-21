@@ -14,14 +14,17 @@ class Penerangan extends State {
         Object.assign(this, obj);
     }
 
-    getPenerangan() {
+    getObj() {
         return this.obj;
     }
 
-    getKendaraan() {
-        return this.no_kendaraan;
+    getPemeriksaan() {
+        return this.no_pemeriksaan;
     }
 
+    getNoKendaraan() {
+        return this.no_kendaraan;
+    }
 
     setPenerangan(newLampuJauh, newTambahanLampuJauh, newLampuDekat, newArahLampu, newLampuKabut, newLampuPosisi, newLampuBelakang, newLampuRem, newLampuPlat, newLampuMundur, newLampuKabutBelakang, newLampuPeringatan, newReflektorMerah, newLampuTambahanLain, newStatus) {
         this.lampu_jauh = newLampuJauh;
@@ -77,8 +80,8 @@ class Penerangan extends State {
         return State.deserializeClass(data, Penerangan);
     }
 
-    static createInstance(no_kendaraan, no_pemeriksaan, lampu_jauh, tambahan_lampu_jauh, lampu_dekat, arah_lampu, lampu_kabut, lampu_posisi, lampu_belakang, lampu_rem, lampu_plat_nomor, lampu_mundur, lampu_kabut_belakang, lampu_peringatan, reflektor_merah, lampu_tambahan_lain, status) {
-        return new Penerangan({ no_kendaraan, no_pemeriksaan, lampu_jauh, tambahan_lampu_jauh, lampu_dekat, arah_lampu, lampu_kabut, lampu_posisi, lampu_belakang, lampu_rem, lampu_plat_nomor, lampu_mundur, lampu_kabut_belakang, lampu_peringatan, reflektor_merah, lampu_tambahan_lain, status });
+    static createInstance(no_pemeriksaan, no_kendaraan, lampu_jauh, tambahan_lampu_jauh, lampu_dekat, arah_lampu, lampu_kabut, lampu_posisi, lampu_belakang, lampu_rem, lampu_plat_nomor, lampu_mundur, lampu_kabut_belakang, lampu_peringatan, reflektor_merah, lampu_tambahan_lain, status) {
+        return new Penerangan({ no_pemeriksaan, no_kendaraan, lampu_jauh, tambahan_lampu_jauh, lampu_dekat, arah_lampu, lampu_kabut, lampu_posisi, lampu_belakang, lampu_rem, lampu_plat_nomor, lampu_mundur, lampu_kabut_belakang, lampu_peringatan, reflektor_merah, lampu_tambahan_lain, status });
     }
 
     static getClass() {

@@ -7,5 +7,8 @@
 # docker exec prodence peer chaincode install -n permohonancontract -v 0 -p /opt/gopath/src/github.com/contract/permohonan -l node
 # docker exec prodence peer chaincode instantiate -n permohonancontract -v 0 -l node -c '{"Args":["org.prodence.permohonan:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
 
-docker exec prodence peer chaincode install -n peralatancontract -v 0 -p /opt/gopath/src/github.com/contract/peralatan -l node
-docker exec prodence peer chaincode instantiate -n peralatancontract -v 0 -l node -c '{"Args":["org.prodence.peralatan:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
+# docker exec prodence peer chaincode install -n peralatancontract -v 0 -p /opt/gopath/src/github.com/contract/peralatan -l node
+# docker exec prodence peer chaincode instantiate -n peralatancontract -v 0 -l node -c '{"Args":["org.prodence.peralatan:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
+
+docker exec prodence peer chaincode install -n penerangancontract -v 0 -p /opt/gopath/src/github.com/contract/penerangan -l node
+docker exec prodence peer chaincode instantiate -n penerangancontract -v 0 -l node -c '{"Args":["org.prodence.penerangan:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"

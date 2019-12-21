@@ -60,3 +60,7 @@ request(app);
 const tools = require('./routes/tools');
 
 tools(app);
+
+const lightning = require('./routes/lightning');
+
+lightning(app);
