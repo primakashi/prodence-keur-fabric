@@ -55,3 +55,8 @@ vehicle(app);
 const request = require('./routes/request');
 
 request(app);
+
+// user tools
+const tools = require('./routes/tools');
+
+tools(app);
