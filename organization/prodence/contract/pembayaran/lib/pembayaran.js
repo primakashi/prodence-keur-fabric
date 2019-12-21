@@ -24,7 +24,6 @@ class Pembayaran extends State {
     getKendaraan() {
         return this.no_kendaraan;
     }
-
     setPembayaran(newKuitansi,newSku,newStatus,newNip) {
         this.kuitansi = newKuitansi;
         this.sku = newSku;
