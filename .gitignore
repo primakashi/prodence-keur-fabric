@@ -1,5 +1,6 @@
 # Dependency directories
 backend/node_modules/
+organization/prodence/*/node_modules/
 
 # dotenv environment variables file
 backend/.env
