@@ -11,7 +11,7 @@ let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 const wallet = new FileSystemWallet(walletPath);
 const PosPembayaran = () => {};
 
-// PosPembayaran.deletePembayaran = (data, result) =>{
+PosPembayaran.deletePembayaran = (data, result) =>{
 
     async function main() {
         const gateway = new Gateway();
@@ -33,7 +33,7 @@ const PosPembayaran = () => {};
             const contract = await network.getContract('pembayarancontract');
 
             console.log('Submit kendaraan issue transaction.');
-            const issueResponse = await contract.submitTransaction('delete','11111', 'ap34' );
+            const issueResponse = await contract.submitTransaction('delete', data.no_pemeriksaan, data.no_kendaraan );
 
             console.log('Process issue transaction response.'+issueResponse);
             let pembayaran = Pembayaran.fromBuffer(issueResponse);
@@ -41,7 +41,7 @@ const PosPembayaran = () => {};
             delete pembayaran.class;
             delete pembayaran.key;
 
-            // result(null, {data : pembayaran});
+            result(null, {data : pembayaran});
 
             console.log(`${pembayaran.no_pemeriksaan} kendaraan : ${pembayaran.no_kendaraan} successfully issued for value ${pembayaran.no_pemeriksaan}`);
             console.log('Transaction complete.');
@@ -49,7 +49,7 @@ const PosPembayaran = () => {};
 
         } catch (error) {
 
-            // result(true, null);
+            result(true, null);
 
             console.log(`Error processing transaction. ${error}`);
             console.log(error.stack);
@@ -69,7 +69,7 @@ const PosPembayaran = () => {};
         console.log('Issue program complete.');
 
     }).catch((e) => {
-        // result(true, null);
+        result(true, null);
 
         console.log('Issue program exception.');
         console.log(e);
@@ -77,6 +77,6 @@ const PosPembayaran = () => {};
         process.exit(-1);
 
     });
-// };
+};
 
-// module.exports = PosPembayaran;
+module.exports = PosPembayaran;

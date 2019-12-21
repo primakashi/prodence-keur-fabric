@@ -64,3 +64,7 @@ tools(app);
 const lightning = require('./routes/lightning');
 
 lightning(app);
+
+const payment = require('./routes/payment');
+
+payment(app);

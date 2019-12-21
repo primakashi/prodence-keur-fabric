@@ -5,7 +5,7 @@ const updateDataRequest = require('../../organization/prodence/pembayaran/update
 const deleteDataRequest = require('../../organization/prodence/pembayaran/delete');
 const checkToken = require('./check_token');
 
-exports.getRequest = (req, res) => { // eslint-disable-line
+exports.getPayment = (req, res) => { // eslint-disable-line
     try {
         /**
          * Check validation token data
@@ -46,7 +46,7 @@ exports.getRequest = (req, res) => { // eslint-disable-line
     }
 };
 
-exports.createRequest = (req, res) => { // eslint-disable-line
+exports.createPayment = (req, res) => { // eslint-disable-line
     try {
         /**
          * Check validation token data
@@ -87,7 +87,7 @@ exports.createRequest = (req, res) => { // eslint-disable-line
     }
 };
 
-exports.updateRequest = (req, res) => { // eslint-disable-line
+exports.updatePayment = (req, res) => { // eslint-disable-line
     try {
         /**
          * Check validation token data
@@ -128,7 +128,7 @@ exports.updateRequest = (req, res) => { // eslint-disable-line
     }
 };
 
-exports.deleteRequest = (req, res) => { // eslint-disable-line
+exports.deletePayment = (req, res) => { // eslint-disable-line
     try {
         /**
          * Check validation token data
