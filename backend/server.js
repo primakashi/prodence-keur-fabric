@@ -72,3 +72,7 @@ payment(app);
 const tirerim = require('./routes/tirerim');
 
 tirerim(app);
+
+const bodyframe = require('./routes/bodyframe');
+
+bodyframe(app);
