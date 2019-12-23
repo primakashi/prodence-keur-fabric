@@ -68,3 +68,7 @@ lightning(app);
 const payment = require('./routes/payment');
 
 payment(app);
+
+const tirerim = require('./routes/tirerim');
+
+tirerim(app);
