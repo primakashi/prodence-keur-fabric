@@ -3,15 +3,16 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
-const Peralatan = require('../contract/peralatan/lib/peralatan.js');
+const convert = require('../../../backend/helper');
+const Suspension = require('../contract/suspension/lib/suspension.js');
 const path = require('path');
 let yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
 let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 
 const wallet = new FileSystemWallet(walletPath);
-const PosPeralatan = () => {};
+const PosSuspension = () => {};
 
-PosPeralatan.getPeralatan = (data, result) =>{
+PosSuspension.getSuspension = (data, result) =>{
 
     async function main() {
         const gateway = new Gateway();
@@ -30,40 +31,33 @@ PosPeralatan.getPeralatan = (data, result) =>{
             const network = await gateway.getNetwork('mychannel');
 
             console.log('Use org.prodence.kendaraan smart contract.');
-            const contract = await network.getContract('peralatancontract');
+            const contract = await network.getContract('suspensioncontract');
 
             console.log('Submit kendaraan issue transaction.');
-            const issueResponse = await contract.submitTransaction('getPeralatan', data.no_pemeriksaan, data.no_kendaraan );
+            const issueResponse = await contract.submitTransaction('get', data.no_pemeriksaan, data.no_kendaraan );
 
             console.log('Process issue transaction response.'+issueResponse);
-            let peralatan = Peralatan.fromBuffer(issueResponse);
+            let suspension = Suspension.fromBuffer(issueResponse);
 
-            delete peralatan.class;
-            delete peralatan.key;
+            delete suspension.class;
+            delete suspension.key;
 
-            peralatan.no_rangka = (peralatan.no_rangka === 'true');
-            peralatan.pelat_pabrik_pembuatnya = (peralatan.pelat_pabrik_pembuatnya === 'true');
-            peralatan.pelat_nomor = (peralatan.pelat_nomor === 'true');
-            peralatan.tulisan = (peralatan.tulisan === 'true');
-            peralatan.penghapus_kaca_dapan = (peralatan.penghapus_kaca_dapan === 'true');
-            peralatan.klakson = (peralatan.klakson === 'true');
-            peralatan.kaca_spion = (peralatan.kaca_spion === 'true');
-            peralatan.pandangan_ke_depan = (peralatan.pandangan_ke_depan === 'true');
-            peralatan.kaca_penawar_sinar = (peralatan.kaca_penawar_sinar === 'true');
-            peralatan.alat_pengendalian = (peralatan.alat_pengendalian === 'true');
-            peralatan.lampu_indikasi = (peralatan.lampu_indikasi === 'true');
-            peralatan.speedometer = (peralatan.speedometer === 'true');
-            peralatan.perlangkapan = (peralatan.perlangkapan === 'true');
+            suspension.suspensi_roda_depan = convert.convertToBool(suspension.suspensi_roda_depan);
+            suspension.suspensi_roda_belakang = convert.convertToBool(suspension.suspensi_roda_belakang);
+            suspension.sumbu = convert.convertToBool(suspension.sumbu);
+            suspension.pemasangan_sumbu = convert.convertToBool(suspension.pemasangan_sumbu);
+            suspension.pegas = convert.convertToBool(suspension.pegas);
+            suspension.bantalan_roda = convert.convertToBool(suspension.bantalan_roda);
 
-            result(null, {data : peralatan});
+            result(null, {data : suspension});
 
-            console.log(`${peralatan.no_pemeriksaan} kendaraan : ${peralatan.no_kendaraan} successfully issued for value ${peralatan.no_pemeriksaan}`);
+            console.log(`${suspension.no_pemeriksaan} kendaraan : ${suspension.no_kendaraan} successfully issued for value ${suspension.no_pemeriksaan}`);
             console.log('Transaction complete.');
-            console.log(peralatan);
+            console.log(suspension);
 
         } catch (error) {
 
-            result(true, null);
+            // result(true, null);
 
             console.log(`Error processing transaction. ${error}`);
             console.log(error.stack);
@@ -93,4 +87,4 @@ PosPeralatan.getPeralatan = (data, result) =>{
     });
 };
 
-module.exports = PosPeralatan;
+module.exports = PosSuspension;
