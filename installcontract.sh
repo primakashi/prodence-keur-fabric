@@ -19,5 +19,8 @@
 # docker exec prodence peer chaincode install -n bodyframecontract -v 0 -p /opt/gopath/src/github.com/contract/bodyframe -l node
 # docker exec prodence peer chaincode instantiate -n bodyframecontract -v 0 -l node -c '{"Args":["org.prodence.bodyframe:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
 
-docker exec prodence peer chaincode install -n suspensioncontract -v 0 -p /opt/gopath/src/github.com/contract/suspension -l node
-docker exec prodence peer chaincode instantiate -n suspensioncontract -v 0 -l node -c '{"Args":["org.prodence.suspension:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
+# docker exec prodence peer chaincode install -n suspensioncontract -v 0 -p /opt/gopath/src/github.com/contract/suspension -l node
+# docker exec prodence peer chaincode instantiate -n suspensioncontract -v 0 -l node -c '{"Args":["org.prodence.suspension:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
+
+docker exec prodence peer chaincode install -n lain_laincontract -v 0 -p /opt/gopath/src/github.com/contract/lain_lain -l node
+docker exec prodence peer chaincode instantiate -n lain_laincontract -v 0 -l node -c '{"Args":["org.prodence.lain_lain:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
