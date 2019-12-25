@@ -26,7 +26,7 @@ PosPermohonan.createPermohonan = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('permohonancontract');
-            const issueResponse = await contract.submitTransaction('create',data.no_stnk,data.no_kendaraan,data.no_ktp,data.no_mesin,data.no_rangka,data.buku_uji,data.no_laporan,data.status,data.jarak_pemaikaian,data.tgl_pemeriksaan,data.no_pemeriksaan,data.lokasi_pengujian,data.no_kode);
+            const issueResponse = await contract.submitTransaction('create',data.no_stnk,data.no_kendaraan,data.no_ktp,data.no_mesin,data.no_rangka,data.buku_uji,data.no_laporan,data.status,data.jarak_pemakaian,data.tgl_pemeriksaan,data.no_pemeriksaan,data.lokasi_pengujian,data.no_kode);
 
             let permohonan = Permohonan.fromBuffer(issueResponse);
 
