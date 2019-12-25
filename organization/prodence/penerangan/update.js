@@ -3,6 +3,7 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
+const convert = require('../../../backend/helper');
 const Penerangan = require('../contract/penerangan/lib/penerangan.js');
 const path = require('path');
 let yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
@@ -24,43 +25,32 @@ PosPenerangan.updatePenerangan = (data, result) =>{
                 wallet: wallet,
                 discovery: { enabled:false, asLocalhost: true }
             };
-            console.log('Connect to Fabric gateway.');
             await gateway.connect(connectionProfile, connectionOptions);
-
-            console.log('Use network channel: mychannel.');
             const network = await gateway.getNetwork('mychannel');
-
-            console.log('Use org.prodence.kendaraan smart contract.');
             const contract = await network.getContract('penerangancontract');
-
-            console.log('Submit kendaraan issue transaction.');
             const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.lampu_jauh.toString(), data.tambahan_lampu_jauh.toString(), data.lampu_dekat.toString(), data.arah_lampu.toString(), data.lampu_kabut.toString(), data.lampu_posisi.toString(), data.lampu_belakang.toString(), data.lampu_rem.toString(), data.lampu_plat_nomor.toString(), data.lampu_mundur.toString(), data.lampu_kabut_belakang.toString(), data.lampu_peringatan.toString(), data.reflektor_merah.toString(), data.lampu_tambahan_lain.toString(), data.status);
-
-            console.log('Process issue transaction response.'+issueResponse);
             let penerangan = Penerangan.fromBuffer(issueResponse);
 
             delete penerangan.class;
             delete penerangan.key;
 
-            penerangan.lampu_jauh = (penerangan.lampu_jauh === 'true');
-            penerangan.tambahan_lampu_jauh = (penerangan.tambahan_lampu_jauh === 'true');
-            penerangan.lampu_dekat = (penerangan.lampu_dekat === 'true');
-            penerangan.arah_lampu = (penerangan.arah_lampu === 'true');
-            penerangan.lampu_kabut = (penerangan.lampu_kabut === 'true');
-            penerangan.lampu_posisi = (penerangan.lampu_posisi === 'true');
-            penerangan.lampu_belakang = (penerangan.lampu_belakang === 'true');
-            penerangan.lampu_rem = (penerangan.lampu_rem === 'true');
-            penerangan.lampu_plat_nomor = (penerangan.lampu_plat_nomor === 'true');
-            penerangan.lampu_mundur = (penerangan.lampu_mundur === 'true');
-            penerangan.lampu_kabut_belakang = (penerangan.lampu_kabut_belakang === 'true');
-            penerangan.lampu_peringatan = (penerangan .lampu_peringatan=== 'true');
-            penerangan.reflektor_merah = (penerangan.reflektor_merah === 'true');
-            penerangan.lampu_tambahan_lain = (penerangan.lampu_tambahan_lain === 'true');
+            penerangan.lampu_jauh = convert.convertToBool(penerangan.lampu_jauh);
+            penerangan.tambahan_lampu_jauh = convert.convertToBool(penerangan.tambahan_lampu_jauh);
+            penerangan.lampu_dekat = convert.convertToBool(penerangan.lampu_dekat);
+            penerangan.arah_lampu = convert.convertToBool(penerangan.arah_lampu);
+            penerangan.lampu_kabut = convert.convertToBool(penerangan.lampu_kabut);
+            penerangan.lampu_posisi = convert.convertToBool(penerangan.lampu_posisi);
+            penerangan.lampu_belakang = convert.convertToBool(penerangan.lampu_belakang);
+            penerangan.lampu_rem = convert.convertToBool(penerangan.lampu_rem);
+            penerangan.lampu_plat_nomor = convert.convertToBool(penerangan.lampu_plat_nomor);
+            penerangan.lampu_mundur = convert.convertToBool(penerangan.lampu_mundur);
+            penerangan.lampu_kabut_belakang = convert.convertToBool(penerangan.lampu_kabut_belakang);
+            penerangan.lampu_peringatan = convert.convertToBool(penerangan .lampu_peringata);
+            penerangan.reflektor_merah = convert.convertToBool(penerangan.reflektor_merah);
+            penerangan.lampu_tambahan_lain = convert.convertToBool(penerangan.lampu_tambahan_lain);
 
             result(null, {data : penerangan});
 
-            console.log(`${penerangan.no_pemeriksaan} kendaraan : ${penerangan.no_kendaraan} successfully issued for value ${penerangan.no_pemeriksaan}`);
-            console.log('Transaction complete.');
             console.log(penerangan);
 
         } catch (error) {

@@ -24,19 +24,10 @@ PosSuspension.deleteSuspension = (data, result) =>{
                 wallet: wallet,
                 discovery: { enabled:false, asLocalhost: true }
             };
-            console.log('Connect to Fabric gateway.');
             await gateway.connect(connectionProfile, connectionOptions);
-
-            console.log('Use network channel: mychannel.');
             const network = await gateway.getNetwork('mychannel');
-
-            console.log('Use org.prodence.kendaraan smart contract.');
             const contract = await network.getContract('suspensioncontract');
-
-            console.log('Submit kendaraan issue transaction.');
             const issueResponse = await contract.submitTransaction('delete', data.no_pemeriksaan, data.no_kendaraan );
-
-            console.log('Process issue transaction response.'+issueResponse);
             let suspension = Suspension.fromBuffer(issueResponse);
 
             delete suspension.class;
@@ -51,8 +42,6 @@ PosSuspension.deleteSuspension = (data, result) =>{
 
             result(null, {data : suspension});
 
-            console.log(`${suspension.no_pemeriksaan} kendaraan : ${suspension.no_kendaraan} successfully issued for value ${suspension.no_pemeriksaan}`);
-            console.log('Transaction complete.');
             console.log(suspension);
 
         } catch (error) {

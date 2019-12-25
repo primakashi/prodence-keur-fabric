@@ -23,22 +23,10 @@ Vehicle.createVehicle = (data, result) =>{
                 wallet: wallet,
                 discovery: { enabled:false, asLocalhost: true }
             };
-
-            console.log('Connect to Fabric gateway.');
             await gateway.connect(connectionProfile, connectionOptions);
-
-            console.log('Use network channel: mychannel.');
             const network = await gateway.getNetwork('mychannel');
-
-            console.log('Use org.prodence.kendaraan smart contract.');
             const contract = await network.getContract('kendaraancontract');
-
-            console.log('Submit kendaraan issue transaction.');
             const updateResponse = await contract.submitTransaction('update', data.no_stnk,data.no_kendaraan,data.no_ktp,data.no_ktp_baru,data.nama_pemilik,data.alamat_garasi);
-
-            // process response
-            console.log('Process buy transaction response.');
-
             let kendaraan = Kendaraan.fromBuffer(updateResponse);
 
             delete kendaraan.class;
@@ -47,8 +35,6 @@ Vehicle.createVehicle = (data, result) =>{
 
             result(null, {data : kendaraan});
 
-            console.log(`${kendaraan.no_stnk} commercial paper : ${kendaraan.no_kendaraan} successfully purchased by ${kendaraan.no_ktp}`);
-            console.log('Transaction complete.');
             console.log(kendaraan);
 
         } catch (error) {
@@ -78,6 +64,6 @@ Vehicle.createVehicle = (data, result) =>{
         process.exit(-1);
 
     });
-}
+};
 
 module.exports = Vehicle;
