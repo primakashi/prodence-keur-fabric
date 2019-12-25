@@ -3,6 +3,7 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
+const convert = require('../../../backend/helper');
 const Peralatan = require('../contract/peralatan/lib/peralatan.js');
 const path = require('path');
 let yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
@@ -23,43 +24,31 @@ PosPeralatan.getPeralatan = (data, result) =>{
                 wallet: wallet,
                 discovery: { enabled:false, asLocalhost: true }
             };
-            console.log('Connect to Fabric gateway.');
             await gateway.connect(connectionProfile, connectionOptions);
-
-            console.log('Use network channel: mychannel.');
             const network = await gateway.getNetwork('mychannel');
-
-            console.log('Use org.prodence.kendaraan smart contract.');
             const contract = await network.getContract('peralatancontract');
-
-            console.log('Submit kendaraan issue transaction.');
             const issueResponse = await contract.submitTransaction('getPeralatan', data.no_pemeriksaan, data.no_kendaraan );
-
-            console.log('Process issue transaction response.'+issueResponse);
             let peralatan = Peralatan.fromBuffer(issueResponse);
 
             delete peralatan.class;
             delete peralatan.key;
 
-            peralatan.no_rangka = (peralatan.no_rangka == 'true');
-            peralatan.pelat_pabrik_pembuatnya = (peralatan.pelat_pabrik_pembuatnya == 'true');
-            peralatan.pelat_nomor = (peralatan.pelat_nomor == 'true');
-            peralatan.tulisan = (peralatan.tulisan == 'true');
-            peralatan.penghapus_kaca_dapan = (peralatan.penghapus_kaca_dapan == 'true');
-            peralatan.klakson = (peralatan.klakson == 'true');
-            peralatan.kaca_spion = (peralatan.kaca_spion == 'true');
-            peralatan.pandangan_ke_depan = (peralatan.pandangan_ke_depan == 'true');
-            peralatan.kaca_penawar_sinar = (peralatan.kaca_penawar_sinar == 'true');
-            peralatan.alat_pengendalian = (peralatan.alat_pengendalian == 'true');
-            peralatan.lampu_indikasi = (peralatan.lampu_indikasi == 'true');
-            peralatan.speedometer = (peralatan.speedometer == 'true');
-            peralatan.perlangkapan = (peralatan.perlangkapan == 'true');
-            peralatan.status = (peralatan.status == 'true');
+            peralatan.no_rangka = convert.convertToBool(peralatan.no_rangka);
+            peralatan.pelat_pabrik_pembuatnya = convert.convertToBool(peralatan.pelat_pabrik_pembuatnya);
+            peralatan.pelat_nomor = convert.convertToBool(peralatan.pelat_nomor);
+            peralatan.tulisan = convert.convertToBool(peralatan.tulisan);
+            peralatan.penghapus_kaca_dapan = convert.convertToBool(peralatan.penghapus_kaca_dapan);
+            peralatan.klakson = convert.convertToBool(peralatan.klakson);
+            peralatan.kaca_spion = convert.convertToBool(peralatan.kaca_spion);
+            peralatan.pandangan_ke_depan = convert.convertToBool(peralatan.pandangan_ke_depan);
+            peralatan.kaca_penawar_sinar = convert.convertToBool(peralatan.kaca_penawar_sinar);
+            peralatan.alat_pengendalian = convert.convertToBool(peralatan.alat_pengendalian);
+            peralatan.lampu_indikasi = convert.convertToBool(peralatan.lampu_indikasi);
+            peralatan.speedometer = convert.convertToBool(peralatan.speedometer);
+            peralatan.perlangkapan = convert.convertToBool(peralatan.perlangkapan);
 
             result(null, {data : peralatan});
 
-            console.log(`${peralatan.no_pemeriksaan} kendaraan : ${peralatan.no_kendaraan} successfully issued for value ${peralatan.no_pemeriksaan}`);
-            console.log('Transaction complete.');
             console.log(peralatan);
 
         } catch (error) {

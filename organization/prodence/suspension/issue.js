@@ -3,15 +3,17 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
-const Permohonan = require('../contract/permohonan/lib/permohonan.js');
+const convert = require('../../../backend/helper');
+const Suspension = require('../contract/suspension/lib/suspension.js');
 const path = require('path');
 let yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
 let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 
 const wallet = new FileSystemWallet(walletPath);
-const PosPermohonan = () => {};
+const PosSuspension = () => {};
 
-PosPermohonan.updatePermohonan = (data, result) =>{
+
+PosSuspension.createSuspension = (data, result) =>{
 
     async function main() {
         const gateway = new Gateway();
@@ -25,17 +27,24 @@ PosPermohonan.updatePermohonan = (data, result) =>{
             };
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
-            const contract = await network.getContract('permohonancontract');
-            const issueResponse = await contract.submitTransaction('update',data.no_pemeriksaan,data.no_kendaraan,data.status);
+            const contract = await network.getContract('suspensioncontract');
+            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.suspensi_roda_depan.toString(), data.suspensi_roda_belakang.toString(), data.sumbu.toString(), data.pemasangan_sumbu.toString(), data.pegas.toString(), data.bantalan_roda.toString(), data.status);
+            let suspension = Suspension.fromBuffer(issueResponse);
 
-            let permohonan = Permohonan.fromBuffer(issueResponse);
+            delete suspension.class;
+            delete suspension.key;
+            delete suspension.currentState;
 
-            delete permohonan.class;
-            delete permohonan.key;
+            suspension.suspensi_roda_depan = convert.convertToBool(suspension.suspensi_roda_depan);
+            suspension.suspensi_roda_belakang = convert.convertToBool(suspension.suspensi_roda_belakang);
+            suspension.sumbu = convert.convertToBool(suspension.sumbu);
+            suspension.pemasangan_sumbu = convert.convertToBool(suspension.pemasangan_sumbu);
+            suspension.pegas = convert.convertToBool(suspension.pegas);
+            suspension.bantalan_roda = convert.convertToBool(suspension.bantalan_roda);
 
-            result(null, {data : permohonan});
+            result(null, {data : suspension});
 
-            console.log(permohonan);
+            console.log(suspension);
 
         } catch (error) {
 
@@ -69,4 +78,4 @@ PosPermohonan.updatePermohonan = (data, result) =>{
     });
 };
 
-module.exports = PosPermohonan;
+module.exports = PosSuspension;

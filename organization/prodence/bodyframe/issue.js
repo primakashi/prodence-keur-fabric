@@ -3,6 +3,7 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
+const convert = require('../../../backend/helper');
 const BodyFrame = require('../contract/tirerim/lib/tirerim.js');
 const path = require('path');
 let yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
@@ -23,29 +24,28 @@ PosBodyFrame.createBodyFrame = (data, result) =>{
                 wallet: wallet,
                 discovery: { enabled:false, asLocalhost: true }
             };
-            console.log('Connect to Fabric gateway.');
             await gateway.connect(connectionProfile, connectionOptions);
-
-            console.log('Use network channel: mychannel.');
             const network = await gateway.getNetwork('mychannel');
-
-            console.log('Use org.prodence.kendaraan smart contract.');
             const contract = await network.getContract('bodyframecontract');
-
-            console.log('Submit kendaraan issue transaction.');
-            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.rangka_penopang, data.bemper, data.tempat_roda_cadangan, data.keamanan_bodi, data.kondisi_bodi, data.ruang_pengemudi, data.tempat_duduk, data.sambungan_kereta_gandengan, data.status);
-
-            console.log('Process issue transaction response.'+issueResponse);
+            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.rangka_penopang.toString(), data.bemper.toString(), data.tempat_roda_cadangan.toString(), data.keamanan_bodi.toString(), data.kondisi_bodi.toString(), data.ruang_pengemudi.toString(), data.tempat_duduk.toString(), data.sambungan_kereta_gandengan.toString(), data.status);
             let bodyframe = BodyFrame.fromBuffer(issueResponse);
 
             delete bodyframe.class;
             delete bodyframe.key;
             delete bodyframe.currentState;
 
+            bodyframe.rangka_penopang = convert.convertToBool(bodyframe.rangka_penopang);
+            bodyframe.bemper = convert.convertToBool(bodyframe.bemper);
+            bodyframe.tempat_roda_cadangan = convert.convertToBool(bodyframe.tempat_roda_cadangan);
+            bodyframe.keamanan_bodi = convert.convertToBool(bodyframe.keamanan_bodi);
+            bodyframe.kondisi_bodi = convert.convertToBool(bodyframe.kondisi_bodi);
+            bodyframe.ruang_pengemudi = convert.convertToBool(bodyframe.ruang_pengemudi);
+            bodyframe.tempat_duduk = convert.convertToBool(bodyframe.tempat_roda_cadangan);
+            bodyframe.sambungan_kereta_gandengan = convert.convertToBool(bodyframe.sambungan_kereta_gandengan);
+
             result(null, {data : bodyframe});
 
-            console.log(`${bodyframe.no_pemeriksaan} kendaraan : ${bodyframe.no_kendaraan} successfully issued for value ${bodyframe.no_pemeriksaan}`);
-            console.log('Transaction complete.');
+            console.log(bodyframe);
 
         } catch (error) {
 

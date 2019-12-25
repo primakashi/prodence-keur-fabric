@@ -23,19 +23,10 @@ PosPembayaran.updatePembayaran = (data, result) =>{
                 wallet: wallet,
                 discovery: { enabled:false, asLocalhost: true }
             };
-            console.log('Connect to Fabric gateway.');
             await gateway.connect(connectionProfile, connectionOptions);
-
-            console.log('Use network channel: mychannel.');
             const network = await gateway.getNetwork('mychannel');
-
-            console.log('Use org.prodence.kendaraan smart contract.');
             const contract = await network.getContract('pembayarancontract');
-
-            console.log('Submit kendaraan issue transaction.');
             const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.kuitansi, data.sku, data.status, data.nip);
-
-            console.log('Process issue transaction response.'+issueResponse);
             let pembayaran = Pembayaran.fromBuffer(issueResponse);
 
             delete pembayaran.class;
@@ -43,8 +34,6 @@ PosPembayaran.updatePembayaran = (data, result) =>{
 
             result(null, {data : pembayaran});
 
-            console.log(`${pembayaran.no_pemeriksaan} kendaraan : ${pembayaran.no_kendaraan} successfully issued for value ${pembayaran.no_pemeriksaan}`);
-            console.log('Transaction complete.');
             console.log(pembayaran);
 
         } catch (error) {

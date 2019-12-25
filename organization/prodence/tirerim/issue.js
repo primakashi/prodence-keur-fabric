@@ -3,6 +3,7 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
+const convert = require('../../../backend/helper');
 const TireRim = require('../contract/tirerim/lib/tirerim.js');
 const path = require('path');
 let yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
@@ -23,29 +24,26 @@ PosTireRim.createTireRim = (data, result) =>{
                 wallet: wallet,
                 discovery: { enabled:false, asLocalhost: true }
             };
-            console.log('Connect to Fabric gateway.');
             await gateway.connect(connectionProfile, connectionOptions);
-
-            console.log('Use network channel: mychannel.');
             const network = await gateway.getNetwork('mychannel');
-
-            console.log('Use org.prodence.kendaraan smart contract.');
             const contract = await network.getContract('tirerimcontract');
-
-            console.log('Submit kendaraan issue transaction.');
-            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.ukuran_dan_jenis_ban, data.keadaan_ban, data.kedalaman_kembang_ban, data.ukuran_dan_jenis_pelek, data.keadaan_pelek, data.penguatan_ban, data.status);
-
-            console.log('Process issue transaction response.'+issueResponse);
+            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.ukuran_dan_jenis_ban.toString(), data.keadaan_ban.toString(), data.kedalaman_kembang_ban.toString(), data.ukuran_dan_jenis_pelek.toString(), data.keadaan_pelek.toString(), data.penguatan_ban.toString(), data.status);
             let tirerim = TireRim.fromBuffer(issueResponse);
 
             delete tirerim.class;
             delete tirerim.key;
             delete tirerim.currentState;
 
+            tirerim.ukuran_dan_jenis_ban = convert.convertToBool(tirerim.ukuran_dan_jenis_ban);
+            tirerim.keadaan_ban = convert.convertToBool(tirerim.keadaan_ban);
+            tirerim.kedalaman_kembang_ban = convert.convertToBool(tirerim.kedalaman_kembang_ban);
+            tirerim.ukuran_dan_jenis_pelek = convert.convertToBool(tirerim.ukuran_dan_jenis_pelek);
+            tirerim.keadaan_pelek = convert.convertToBool(tirerim.keadaan_pelek);
+            tirerim.penguatan_ban = convert.convertToBool(tirerim.penguatan_ban);
+
             result(null, {data : tirerim});
 
-            console.log(`${tirerim.no_pemeriksaan} kendaraan : ${tirerim.no_kendaraan} successfully issued for value ${tirerim.no_pemeriksaan}`);
-            console.log('Transaction complete.');
+            console.log(tirerim);
 
         } catch (error) {
 

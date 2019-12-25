@@ -76,3 +76,7 @@ tirerim(app);
 const bodyframe = require('./routes/bodyframe');
 
 bodyframe(app);
+
+const suspension = require('./routes/suspension');
+
+suspension(app);

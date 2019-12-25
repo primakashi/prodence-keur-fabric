@@ -23,19 +23,10 @@ PosPermohonan.deletePermohonan = (data, result) =>{
                 wallet: wallet,
                 discovery: { enabled:false, asLocalhost: true }
             };
-            console.log('Connect to Fabric gateway.');
             await gateway.connect(connectionProfile, connectionOptions);
-
-            console.log('Use network channel: mychannel.');
             const network = await gateway.getNetwork('mychannel');
-
-            console.log('Use org.prodence.kendaraan smart contract.');
             const contract = await network.getContract('permohonancontract');
-
-            console.log('Submit kendaraan issue transaction.');
             const issueResponse = await contract.submitTransaction('delete',data.no_pemeriksaan,data.no_kendaraan );
-
-            console.log('Process issue transaction response.'+issueResponse);
             let permohonan = Permohonan.fromBuffer(issueResponse);
 
             delete permohonan.class;
@@ -43,8 +34,6 @@ PosPermohonan.deletePermohonan = (data, result) =>{
 
             result(null, {data : permohonan});
 
-            console.log(`${permohonan.no_pemeriksaan} kendaraan : ${permohonan.no_kendaraan} successfully issued for value ${permohonan.no_pemeriksaan}`);
-            console.log('Transaction complete.');
             console.log(permohonan);
 
         } catch (error) {
