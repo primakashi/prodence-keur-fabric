@@ -80,3 +80,7 @@ bodyframe(app);
 const suspension = require('./routes/suspension');
 
 suspension(app);
+
+const other = require('./routes/other');
+
+other(app);
