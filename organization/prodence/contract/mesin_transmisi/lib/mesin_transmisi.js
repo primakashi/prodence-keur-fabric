@@ -69,8 +69,8 @@ class Mesin_transmisi extends State {
         return State.deserializeClass(data, Mesin_transmisi);
     }
 
-    static createInstance(no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_buang_gas, emisi_asap, emisi_co, status) {
-        return new Mesin_transmisi({ no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_buang_gas, emisi_asap, emisi_co, status});
+    static createInstance(no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, status) {
+        return new Mesin_transmisi({ no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, status});
     }
 
     static getClass() {

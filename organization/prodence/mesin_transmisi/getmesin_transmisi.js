@@ -12,7 +12,7 @@ let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 const wallet = new FileSystemWallet(walletPath);
 const PosMesin_transmisi = () => {};
 
-PosMesin_transmisi.getMesin_transmisi = (data, result) =>{
+// PosMesin_transmisi.getMesin_transmisi = (data, result) =>{
 
     async function main() {
         const gateway = new Gateway();
@@ -27,7 +27,7 @@ PosMesin_transmisi.getMesin_transmisi = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('mesin_transmisicontract');
-            const issueResponse = await contract.submitTransaction('getMesin_transmisi', data.no_pemeriksaan, data.no_kendaraan );
+            const issueResponse = await contract.submitTransaction('getMesin_transmisi','123415', 'AD2345EV', 'baik', 'baik', 'baik', 'baik', 'baik', 'baik', 'lulus');
             let mesin_transmisi = Mesin_transmisi.fromBuffer(issueResponse);
 
             delete mesin_transmisi.class;
@@ -40,13 +40,13 @@ PosMesin_transmisi.getMesin_transmisi = (data, result) =>{
             mesin_transmisi.emisi_asap = convert.convertToBool(mesin_transmisi.emisi_asap);
             mesin_transmisi.emisi_co = convert.convertToBool(mesin_transmisi.emisi_co);
          
-            result(null, {data : mesin_transmisi});
+            // result(null, {data : mesin_transmisi});
 
             console.log(mesin_transmisi);
 
         } catch (error) {
 
-            result(true, null);
+            // result(true, null);
 
             console.log(`Error processing transaction. ${error}`);
             console.log(error.stack);
@@ -66,7 +66,7 @@ PosMesin_transmisi.getMesin_transmisi = (data, result) =>{
         console.log('Issue program complete.');
 
     }).catch((e) => {
-        result(true, null);
+        // result(true, null);
 
         console.log('Issue program exception.');
         console.log(e);
@@ -74,6 +74,6 @@ PosMesin_transmisi.getMesin_transmisi = (data, result) =>{
         process.exit(-1);
 
     });
-};
+// };
 
-module.exports = PosMesin_transmisi;
+// module.exports = PosMesin_transmisi;
