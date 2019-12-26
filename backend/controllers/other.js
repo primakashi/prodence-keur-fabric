@@ -1,11 +1,11 @@
 const CryptoJS = require('crypto-js');
-const newOthers = require('../../organization/prodence/lain_lain/issue');
-const getOneOthers = require('../../organization/prodence/lain_lain/getlain_lain');
-const updateDataOthers = require('../../organization/prodence/lain_lain/update');
-const deleteDataOhers = require('../../organization/prodence/lain_lain/delete');
+const newOther = require('../../organization/prodence/other/issue');
+const getOneOther = require('../../organization/prodence/other/get');
+const updateDataOther = require('../../organization/prodence/other/update');
+const deleteDataOther = require('../../organization/prodence/other/delete');
 const checkToken = require('./check_token');
 
-exports.getOthers = (req, res) => { // eslint-disable-line
+exports.getOther = (req, res) => { // eslint-disable-line
     try {
         /**
          * Check validation token data
@@ -15,7 +15,7 @@ exports.getOthers = (req, res) => { // eslint-disable-line
         // const valid = true;
 
         if (valid) {
-            getOneOthers.getLain_lain(req.body, (err,data)=>{
+            getOneOther.getOther(req.body, (err,data)=>{
                 if (err) {
                     res.status(400);
                     res.send({
@@ -46,7 +46,7 @@ exports.getOthers = (req, res) => { // eslint-disable-line
     }
 };
 
-exports.createOthers = (req, res) => { // eslint-disable-line
+exports.createOther = (req, res) => { // eslint-disable-line
     try {
         /**
          * Check validation token data
@@ -56,7 +56,7 @@ exports.createOthers = (req, res) => { // eslint-disable-line
         // const valid = true;
 
         if (valid) {
-            newOthers.createLain_lain(req.body, (err,data)=>{
+            newOther.createOther(req.body, (err,data)=>{
                 if (err) {
                     res.status(400);
                     res.send({
@@ -87,7 +87,7 @@ exports.createOthers = (req, res) => { // eslint-disable-line
     }
 };
 
-exports.updateOthers = (req, res) => { // eslint-disable-line
+exports.updateOther = (req, res) => { // eslint-disable-line
     try {
         /**
          * Check validation token data
@@ -97,7 +97,7 @@ exports.updateOthers = (req, res) => { // eslint-disable-line
         // const valid = true;
 
         if (valid) {
-            updateDataOthers.updateLain_lain(req.body, (err,data)=>{
+            updateDataOther.updateOther(req.body, (err,data)=>{
                 if (err) {
                     res.status(400);
                     res.send({
@@ -128,7 +128,7 @@ exports.updateOthers = (req, res) => { // eslint-disable-line
     }
 };
 
-exports.deleteOthers = (req, res) => { // eslint-disable-line
+exports.deleteOther = (req, res) => { // eslint-disable-line
     try {
         /**
          * Check validation token data
@@ -138,7 +138,7 @@ exports.deleteOthers = (req, res) => { // eslint-disable-line
         // const valid = true;
 
         if (valid) {
-            deleteDataOthers.deleteLain_lain(req.body, (err,data)=>{
+            deleteDataOther.deleteOther(req.body, (err,data)=>{
                 if (err) {
                     res.status(400);
                     res.send({

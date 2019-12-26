@@ -3,15 +3,16 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
-const Lain_lain = require('../contract/lain_lain/lib/lain_lain.js');
+const convert = require('../../../backend/helper');
+const Other = require('../contract/other/lib/other.js');
 const path = require('path');
 let yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
 let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 
 const wallet = new FileSystemWallet(walletPath);
-const PosLain_lain = () => {};
+const PosOther = () => {};
 
-PosLain_lain.deleteLain_lain = (data, result) =>{
+PosOther.updateOther = (data, result) =>{
 
     async function main() {
         const gateway = new Gateway();
@@ -23,33 +24,21 @@ PosLain_lain.deleteLain_lain = (data, result) =>{
                 wallet: wallet,
                 discovery: { enabled:false, asLocalhost: true }
             };
-            console.log('Connect to Fabric gateway.');
             await gateway.connect(connectionProfile, connectionOptions);
-
-            console.log('Use network channel: mychannel.');
             const network = await gateway.getNetwork('mychannel');
+            const contract = await network.getContract('othercontract');
+            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.sistem_bahan_bakar.toString(), data.sistem_kelistrikan.toString(), data.status);
+            let other = Other.fromBuffer(issueResponse);
 
-            console.log('Use org.prodence.kendaraan smart contract.');
-            const contract = await network.getContract('lain_laincontract');
+            delete other.class;
+            delete other.key;
 
-            console.log('Submit kendaraan issue transaction.');
-            const issueResponse = await contract.submitTransaction('delete',data.no_pemeriksaan, data.no_kendaraan );
+            other.sistem_bahan_bakar = convert.convertToBool(other.sistem_bahan_bakar);
+            other.sistem_kelistrikan = convert.convertToBool(other.sistem_kelistrikan);
 
-            console.log('Process issue transaction response.'+issueResponse);
-            let lain_lain = Lain_lain.fromBuffer(issueResponse);
+            result(null, {data : other});
 
-            delete lain_lain.class;
-            delete lain_lain.key;
-
-            lain_lain.sistem_bahan_bakar = (lain_lain.sistem_bahan_bakar == 'true');
-            lain_lain.sistem_kelistrikan = (lain_lain.sistem_kelistrikan == 'true');
-            lain_lain.status = (lain_lain.status == 'true');
-
-            result(null, {data : lain_lain});
-
-            console.log(`${lain_lain.no_pemeriksaan} kendaraan : ${lain_lain.no_kendaraan} successfully issued for value ${lain_lain.no_pemeriksaan}`);
-            console.log('Transaction complete.');
-            console.log(lain_lain);
+            console.log(other);
 
         } catch (error) {
 
@@ -83,4 +72,4 @@ PosLain_lain.deleteLain_lain = (data, result) =>{
     });
 };
 
-module.exports = PosLain_lain;
+module.exports = PosOther;

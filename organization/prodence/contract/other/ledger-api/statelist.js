@@ -1,5 +1,5 @@
 'use strict';
-const State = require('./state.js');
+const State = require('./state');
 
 class StateList {
     constructor(ctx, listName) {

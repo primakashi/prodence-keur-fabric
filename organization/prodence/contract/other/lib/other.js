@@ -1,6 +1,6 @@
 'use strict';
 
-const State = require('./../ledger-api/state.js');
+const State = require('../ledger-api/state');
 
 const pState = {
     CREATED: 1,
@@ -8,9 +8,9 @@ const pState = {
     DELETED: 3
 };
 
-class Lain_lain extends State {
+class Other extends State {
     constructor(obj) {
-        super(Lain_lain.getClass(), [obj.no_pemeriksaan, obj.no_kendaraan]);
+        super(Other.getClass(), [obj.no_pemeriksaan, obj.no_kendaraan]);
         Object.assign(this, obj);
     }
 
@@ -22,7 +22,11 @@ class Lain_lain extends State {
         return this.no_kendaraan;
     }
 
-    setPemeriksaanLain_lain(newSistemBahanBakar, newSistemKelistrikan, newStatus) {
+    getPemeriksaan() {
+        return this.no_pemeriksaan;
+    }
+
+    setOther(newSistemBahanBakar, newSistemKelistrikan, newStatus) {
         this.sistem_bahan_bakar = newSistemBahanBakar;
         this.sistem_kelistrikan = newSistemKelistrikan;
         this.status = newStatus;
@@ -54,7 +58,7 @@ class Lain_lain extends State {
     }
 
     static fromBuffer(buffer) {
-        return Lain_lain.deserialize(buffer);
+        return Other.deserialize(buffer);
     }
 
     toBuffer() {
@@ -62,17 +66,17 @@ class Lain_lain extends State {
     }
 
     static deserialize(data) {
-        return State.deserializeClass(data, Lain_lain);
+        return State.deserializeClass(data, Other);
     }
 
     static createInstance(no_pemeriksaan, no_kendaraan, sistem_bahan_bakar, sistem_kelistrikan, status) {
-        return new Lain_lain({ no_pemeriksaan, no_kendaraan,sistem_bahan_bakar, sistem_kelistrikan,status});
+        return new Other({ no_pemeriksaan, no_kendaraan,sistem_bahan_bakar, sistem_kelistrikan,status});
     }
 
     static getClass() {
-        return 'org.prodence.lain_lain';
+        return 'org.prodence.other';
     }
 
 }
 
-module.exports = Lain_lain;
+module.exports = Other;
