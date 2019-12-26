@@ -12,7 +12,7 @@ let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 const wallet = new FileSystemWallet(walletPath);
 const PosMesin_transmisi = () => {};
 
-PosMesin_transmisi.updateMesin_transmisi = (data, result) =>{
+// PosMesin_transmisi.updateMesin_transmisi = (data, result) =>{
 
 
     async function main() {
@@ -28,7 +28,7 @@ PosMesin_transmisi.updateMesin_transmisi = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('mesin_transmisicontract');
-            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.dudukan_mesin.toString(), data.kondisi_mesin.toString(), data.transmisi.toString(), data.sistem_gas_buang.toString(), data.emisi_asap.toString(), data.emisi_co.toString(), data.status);
+            const issueResponse = await contract.submitTransaction('update', '123415', 'AD2345EV', 'baik', 'baik', 'baik', 'baik', 'baik', 'baik', 'lulus');
             let mesin_transmisi = Mesin_transmisi.fromBuffer(issueResponse);
 
             delete mesin_transmisi.class;
@@ -41,13 +41,13 @@ PosMesin_transmisi.updateMesin_transmisi = (data, result) =>{
             mesin_transmisi.emisi_asap = convert.convertToBool(mesin_transmisi.emisi_asap);
             mesin_transmisi.emisi_co = convert.convertToBool(mesin_transmisi.emisi_co);
 
-            result(null, {data : mesin_transmisi});
+            // result(null, {data : mesin_transmisi});
 
             console.log(mesin_transmisi);
 
         } catch (error) {
 
-            result(true, null);
+            // result(true, null);
 
             console.log(`Error processing transaction. ${error}`);
             console.log(error.stack);
@@ -67,7 +67,7 @@ PosMesin_transmisi.updateMesin_transmisi = (data, result) =>{
         console.log('Issue program complete.');
 
     }).catch((e) => {
-        result(true, null);
+        // result(true, null);
 
         console.log('Issue program exception.');
         console.log(e);
@@ -75,6 +75,6 @@ PosMesin_transmisi.updateMesin_transmisi = (data, result) =>{
         process.exit(-1);
 
     });
-};
+// };
 
-module.exports = PosMesin_transmisi;
+// module.exports = PosMesin_transmisi;

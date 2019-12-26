@@ -35,7 +35,7 @@ class Mesin_transmisiContract extends Contract {
     }
 
     async create(ctx, no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_buang_gas, emisi_asap, emisi_co, status) {
-        let mesin_transmisi = Mesin_transmisi.createInstance(no_pemeriksaan, no_kendaraan, no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_buang_gas, emisi_asap, emisi_co, status);
+        let mesin_transmisi = Mesin_transmisi.createInstance(no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_buang_gas, emisi_asap, emisi_co, status);
         mesin_transmisi.setCreated();
         await ctx.mesin_transmisiList.addMesin_transmisi(mesin_transmisi);
         return mesin_transmisi;
