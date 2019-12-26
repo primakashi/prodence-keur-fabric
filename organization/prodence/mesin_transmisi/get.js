@@ -12,7 +12,7 @@ let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 const wallet = new FileSystemWallet(walletPath);
 const PosMesin_transmisi = () => {};
 
-// PosMesin_transmisi.getMesin_transmisi = (data, result) =>{
+PosMesin_transmisi.getMesin_transmisi = (data, result) =>{
 
     async function main() {
         const gateway = new Gateway();
@@ -39,14 +39,14 @@ const PosMesin_transmisi = () => {};
             mesin_transmisi.sistem_gas_buang = convert.convertToBool(mesin_transmisi.sistem_gas_buang);
             mesin_transmisi.emisi_asap = convert.convertToBool(mesin_transmisi.emisi_asap);
             mesin_transmisi.emisi_co = convert.convertToBool(mesin_transmisi.emisi_co);
-         
-            // result(null, {data : mesin_transmisi});
+
+            result(null, {data : mesin_transmisi});
 
             console.log(mesin_transmisi);
 
         } catch (error) {
 
-            // result(true, null);
+            result(true, null);
 
             console.log(`Error processing transaction. ${error}`);
             console.log(error.stack);
@@ -66,7 +66,7 @@ const PosMesin_transmisi = () => {};
         console.log('Issue program complete.');
 
     }).catch((e) => {
-        // result(true, null);
+        result(true, null);
 
         console.log('Issue program exception.');
         console.log(e);
@@ -74,6 +74,6 @@ const PosMesin_transmisi = () => {};
         process.exit(-1);
 
     });
-// };
+};
 
-// module.exports = PosMesin_transmisi;
+module.exports = PosMesin_transmisi;

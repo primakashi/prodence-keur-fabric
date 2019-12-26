@@ -1,6 +1,6 @@
 const CryptoJS = require('crypto-js');
 const newEngine_transmission = require('../../organization/prodence/mesin_transmisi/issue');
-const getOneEngine_transmission = require('../../organization/prodence/mesin_transmisi/getmesin_transmisi');
+const getOneEngine_transmission = require('../../organization/prodence/mesin_transmisi/get');
 const updateDataEngine_transmission = require('../../organization/prodence/mesin_transmisi/update');
 const deleteDataEngine_transmission = require('../../organization/prodence/mesin_transmisi/delete');
 const checkToken = require('./check_token');

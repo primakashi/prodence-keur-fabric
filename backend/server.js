@@ -84,3 +84,7 @@ suspension(app);
 const other = require('./routes/other');
 
 other(app);
+
+const engine_transmission = require('./routes/engine_transmission');
+
+engine_transmission(app);
