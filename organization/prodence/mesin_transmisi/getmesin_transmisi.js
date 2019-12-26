@@ -27,7 +27,7 @@ const PosMesin_transmisi = () => {};
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('mesin_transmisicontract');
-            const issueResponse = await contract.submitTransaction('getMesin_transmisi','123415', 'AD2345EV', 'baik', 'baik', 'baik', 'baik', 'baik', 'baik', 'lulus');
+            const issueResponse = await contract.submitTransaction('getMesin_transmisi', data.no_pemeriksaan, data.no_kendaraan );
             let mesin_transmisi = Mesin_transmisi.fromBuffer(issueResponse);
 
             delete mesin_transmisi.class;
