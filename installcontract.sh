@@ -25,5 +25,8 @@
 # docker exec prodence peer chaincode install -n othercontract -v 0 -p /opt/gopath/src/github.com/contract/other -l node
 # docker exec prodence peer chaincode instantiate -n othercontract -v 0 -l node -c '{"Args":["org.prodence.other:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
 
-docker exec prodence peer chaincode install -n mesin_transmisicontract -v 0 -p /opt/gopath/src/github.com/contract/mesin_transmisi -l node
-docker exec prodence peer chaincode instantiate -n mesin_transmisicontract -v 0 -l node -c '{"Args":["org.prodence.mesin_transmisi:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
+# docker exec prodence peer chaincode install -n mesin_transmisicontract -v 0 -p /opt/gopath/src/github.com/contract/mesin_transmisi -l node
+# docker exec prodence peer chaincode instantiate -n mesin_transmisicontract -v 0 -l node -c '{"Args":["org.prodence.mesin_transmisi:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
+
+docker exec prodence peer chaincode install -n sistem_remcontract -v 0 -p /opt/gopath/src/github.com/contract/sistem_rem -l node
+docker exec prodence peer chaincode instantiate -n sistem_remcontract -v 0 -l node -c '{"Args":["org.prodence.sistem_rem:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
