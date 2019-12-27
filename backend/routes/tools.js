@@ -1,17 +1,17 @@
-module.exports = (brake) => {
+module.exports = (tools) => {
     // eslint-disable-next-line global-require
-    // const brakeController = require('../../organization/prodence/kendaraan/issue');
-    const brakeController = require('../controllers/brake');
+    // const toolsController = require('../../organization/prodence/kendaraan/issue');
+    const toolsController = require('../controllers/tools');
 
-    brake.route('/api/brake')
-        .get(brakeController.getBrake);
+    tools.route('/api/tools')
+        .get(toolsController.getTools);
 
-    brake.route('/api/brake')
-        .post(brakeController.createBrake);
+    tools.route('/api/tools')
+        .post(toolsController.createTools);
 
-    brake.route('/api/brake')
-        .put(brakeController.updateBrake);
+    tools.route('/api/tools')
+        .put(toolsController.updateTools);
 
-    brake.route('/api/brake')
-        .delete(brakeController.deleteBrake);
+    tools.route('/api/tools')
+        .delete(toolsController.deleteTools);
 };

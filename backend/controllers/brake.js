@@ -15,7 +15,7 @@ exports.getBrake = (req, res) => { // eslint-disable-line
         // const valid = true;
 
         if (valid) {
-            getOneBrake.getsistem_rem(req.body, (err,data)=>{
+            getOneBrake.getSistem_rem(req.body, (err,data)=>{
                 if (err) {
                     res.status(400);
                     res.send({

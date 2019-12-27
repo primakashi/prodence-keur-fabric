@@ -25,7 +25,7 @@ class Sistem_rem extends State {
     setPemeriksaanSistem_rem(newPedalRem, newSpelingPedal, newKebocoranKelemahan, newSambunganTuasKabel, newPipaSelang, newSilinderKatup, newTerombolCakram, newPorode, newSistemVakumFungsi, newSistemVakumKebocoran, newSistemVakumPengisian, newSistemVakumPenggerakRem, newSistemVakumPengisisanKeretaGandengan, newSistemVakumTekananAngin, newRemParkirTuasTangan, newRemParkirSpelingTuas, newRemParkirKebocoran, newRemParkirSambunganTuasKabel, newSistemRemGasBuang, newEfisiensiRemUtama, newEfisiensiPerbedaanRemDepan, newEfisiensiPerbedaanRemBelakang, newEfisiensiRemParkir, newStatus) {
         this.pedal_rem = newPedalRem;
         this.speling_pedal = newSpelingPedal;
-        this.keobocran_kelemahan = newKebocoranKelemahan;
+        this.kebocoran_kelemahan = newKebocoranKelemahan;
         this.sambungan_tuas_kabel = newSambunganTuasKabel;
         this.pipa_selang = newPipaSelang;
         this.silinder_katup = newSilinderKatup;
@@ -86,8 +86,8 @@ class Sistem_rem extends State {
         return State.deserializeClass(data, Sistem_rem);
     }
 
-    static createInstance(no_pemeriksaan, no_kendaraan, pedal_rem, speling_pedal, keobocran_kelemahan, sambungan_tuas_kabel, pipa_selang, silinder_katup, terombol_cakram, porode, sistem_vakum_fungsi, sistem_vakum_kebocoran, sistem_vakum_pengisian, sistem_vakum_penggerak_rem, sistem_vakum_pengisian_kereta_gandengan, sistem_vakum_tekanan_angin, rem_parkir_tuas_tangan, rem_parkir_speling_tuas, rem_parkir_kebocoran, rem_parkir_sambungan_tuas_kabel, sistem_rem_emisi_gas_buang, efisiensi_rem_utama, efisiensi_rem_perbedaan_depan, efisiensi_rem_perbedaan_belakang, efisiensi_rem_parkir, status) {
-        return new Sistem_rem({ no_pemeriksaan, no_kendaraan,pedal_rem, speling_pedal, keobocran_kelemahan, sambungan_tuas_kabel, pipa_selang, silinder_katup, terombol_cakram, porode, sistem_vakum_fungsi, sistem_vakum_kebocoran, sistem_vakum_pengisian, sistem_vakum_penggerak_rem, sistem_vakum_pengisian_kereta_gandengan, sistem_vakum_tekanan_angin, rem_parkir_tuas_tangan, rem_parkir_speling_tuas, rem_parkir_kebocoran, rem_parkir_sambungan_tuas_kabel, sistem_rem_emisi_gas_buang, efisiensi_rem_utama, efisiensi_rem_perbedaan_depan, efisiensi_rem_perbedaan_belakang, efisiensi_rem_parkir, status});
+    static createInstance(no_pemeriksaan, no_kendaraan, pedal_rem, speling_pedal, kebocoran_kelemahan, sambungan_tuas_kabel, pipa_selang, silinder_katup, terombol_cakram, porode, sistem_vakum_fungsi, sistem_vakum_kebocoran, sistem_vakum_pengisian, sistem_vakum_penggerak_rem, sistem_vakum_pengisian_kereta_gandengan, sistem_vakum_tekanan_angin, rem_parkir_tuas_tangan, rem_parkir_speling_tuas, rem_parkir_kebocoran, rem_parkir_sambungan_tuas_kabel, sistem_rem_emisi_gas_buang, efisiensi_rem_utama, efisiensi_rem_perbedaan_depan, efisiensi_rem_perbedaan_belakang, efisiensi_rem_parkir, status) {
+        return new Sistem_rem({ no_pemeriksaan, no_kendaraan,pedal_rem, speling_pedal, kebocoran_kelemahan, sambungan_tuas_kabel, pipa_selang, silinder_katup, terombol_cakram, porode, sistem_vakum_fungsi, sistem_vakum_kebocoran, sistem_vakum_pengisian, sistem_vakum_penggerak_rem, sistem_vakum_pengisian_kereta_gandengan, sistem_vakum_tekanan_angin, rem_parkir_tuas_tangan, rem_parkir_speling_tuas, rem_parkir_kebocoran, rem_parkir_sambungan_tuas_kabel, sistem_rem_emisi_gas_buang, efisiensi_rem_utama, efisiensi_rem_perbedaan_depan, efisiensi_rem_perbedaan_belakang, efisiensi_rem_parkir, status});
     }
 
     static getClass() {
