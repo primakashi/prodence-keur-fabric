@@ -88,3 +88,7 @@ other(app);
 const engine_transmission = require('./routes/engine_transmission');
 
 engine_transmission(app);
+
+const brake = require('./routes/brake');
+
+brake(app);
