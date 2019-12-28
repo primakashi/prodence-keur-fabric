@@ -12,7 +12,7 @@ let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 const wallet = new FileSystemWallet(walletPath);
 const PosPeralatan = () => {};
 
-// PosPeralatan.getPeralatan = (data, result) =>{
+PosPeralatan.getPeralatan = (data, result) =>{
 
     async function main() {
         const gateway = new Gateway();
@@ -81,6 +81,6 @@ const PosPeralatan = () => {};
         process.exit(-1);
 
     });
-// };
+};
 
-// module.exports = PosPeralatan;
+module.exports = PosPeralatan;
