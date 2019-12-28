@@ -9,63 +9,76 @@ let yamlPath =  path.resolve(__dirname,'../gateway/networkConnection.yaml');
 let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 
 const wallet = new FileSystemWallet(walletPath);
-// const PosUji_kelayakan = () => {};
+const PosUji_kelayakan = () => {};
 
-// PosUji_kelayakan.getUji_kelayakan = (data, result) =>{
+PosUji_kelayakan.getUji_kelayakan = (data, result) =>{
 
-async function main() {
-    const gateway = new Gateway();
-    try {
-        const userName = 'User1@org1.prodence.com';
-        let connectionProfile = yaml.safeLoad(fs.readFileSync(yamlPath, 'utf8'));
-        let connectionOptions = {
-            identity: userName,
-            wallet: wallet,
-            discovery: { enabled:false, asLocalhost: true }
-        };
-        await gateway.connect(connectionProfile, connectionOptions);
-        const network = await gateway.getNetwork('mychannel');
-        const contract = await network.getContract('uji_kelayakancontract');
-        const issueResponse = await contract.submitTransaction('getuji_kelayakan', '1231435', 'AD5846EG', '565', '878', '345', '898', '777', '678', '789', '246', '546', '346', '256', 'baik', 'baik', 'lulus');
-        let uji_kelayakan = Uji_kelayakan.fromBuffer(issueResponse);
+    async function main() {
+        const gateway = new Gateway();
+        try {
+            const userName = 'User1@org1.prodence.com';
+            let connectionProfile = yaml.safeLoad(fs.readFileSync(yamlPath, 'utf8'));
+            let connectionOptions = {
+                identity: userName,
+                wallet: wallet,
+                discovery: { enabled:false, asLocalhost: true }
+            };
+            await gateway.connect(connectionProfile, connectionOptions);
+            const network = await gateway.getNetwork('mychannel');
+            const contract = await network.getContract('uji_kelayakancontract');
+            const issueResponse = await contract.submitTransaction('getuji_kelayakan', data.no_pemeriksaan, data.no_kendaraan);
+            let uji_kelayakan = Uji_kelayakan.fromBuffer(issueResponse);
 
-        delete uji_kelayakan.class;
-        delete uji_kelayakan.key;
+            delete uji_kelayakan.class;
+            delete uji_kelayakan.key;
 
-        // result(null, {data : uji_kelayakan});
+            uji_kelayakan.side_slip = parseInt(uji_kelayakan.side_slip);
+            uji_kelayakan.rem_utama = parseInt(uji_kelayakan.rem_utama);
+            uji_kelayakan.rem_parkir = parseInt(uji_kelayakan.rem_parkir);
+            uji_kelayakan.gaya_rem_s11 = parseInt(uji_kelayakan.gaya_rem_s11);
+            uji_kelayakan.gaya_rem_s12 = parseInt(uji_kelayakan.gaya_rem_s12);
+            uji_kelayakan.gaya_rem_s21 = parseInt(uji_kelayakan.gaya_rem_s21);
+            uji_kelayakan.gaya_rem_s22 = parseInt(uji_kelayakan.gaya_rem_s22);
+            uji_kelayakan.gaya_rem_s31 = parseInt(uji_kelayakan.gaya_rem_s31);
+            uji_kelayakan.gaya_rem_s32 = parseInt(uji_kelayakan.gaya_rem_s32);
+            uji_kelayakan.gaya_rem_s41 = parseInt(uji_kelayakan.gaya_rem_s41);
+            uji_kelayakan.gaya_rem_s42 = parseInt(uji_kelayakan.gaya_rem_s42);
+            uji_kelayakan.speedometer = parseInt(uji_kelayakan.speedometer);
 
-        console.log(uji_kelayakan);
+            result(null, {data : uji_kelayakan});
 
-    } catch (error) {
+            console.log(uji_kelayakan);
 
-        // result(true, null);
+        } catch (error) {
 
-        console.log(`Error processing transaction. ${error}`);
-        console.log(error.stack);
+            result(true, null);
 
-    } finally {
+            console.log(`Error processing transaction. ${error}`);
+            console.log(error.stack);
 
-        // Disconnect from the gateway
-        console.log('Disconnect from Fabric gateway.');
-        gateway.disconnect();
+        } finally {
+
+            // Disconnect from the gateway
+            console.log('Disconnect from Fabric gateway.');
+            gateway.disconnect();
+
+        }
 
     }
 
-}
+    main().then(() => {
 
-main().then(() => {
+        console.log('Issue program complete.');
 
-    console.log('Issue program complete.');
+    }).catch((e) => {
+        result(true, null);
 
-}).catch((e) => {
-    // result(true, null);
+        console.log('Issue program exception.');
+        console.log(e);
+        console.log(e.stack);
+        process.exit(-1);
 
-    console.log('Issue program exception.');
-    console.log(e);
-    console.log(e.stack);
-    process.exit(-1);
+    });
+};
 
-});
-// };
-
-// module.exports = PosUji_kelayakan;
+module.exports = PosUji_kelayakan;

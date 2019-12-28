@@ -92,3 +92,7 @@ engine_transmission(app);
 const brake = require('./routes/brake');
 
 brake(app);
+
+const feasibility = require('./routes/feasibility');
+
+feasibility(app);

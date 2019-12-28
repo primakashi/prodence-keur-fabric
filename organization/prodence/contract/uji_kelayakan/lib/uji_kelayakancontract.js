@@ -34,7 +34,7 @@ class Uji_kelayakanContract extends Contract {
         return uji_kelayakan;
     }
 
-    async create(ctx, no_pemeriksaan, no_kendaraan, side_slip,rem_utama, rem_parkir, gaya_rem_s11, gaya_rem_s12, gaya_rem_s21, gaya_rem_s22, gaya_rem_s31, gaya_rem_s32, gaya_rem_s41, gaya_rem_s42, speedometer, notes, status) {
+    async create(ctx, no_pemeriksaan, no_kendaraan, side_slip, rem_utama, rem_parkir, gaya_rem_s11, gaya_rem_s12, gaya_rem_s21, gaya_rem_s22, gaya_rem_s31, gaya_rem_s32, gaya_rem_s41, gaya_rem_s42, speedometer, notes, status) {
         let uji_kelayakan = Uji_kelayakan.createInstance(no_pemeriksaan, no_kendaraan, side_slip,rem_utama, rem_parkir, gaya_rem_s11, gaya_rem_s12, gaya_rem_s21, gaya_rem_s22, gaya_rem_s31, gaya_rem_s32, gaya_rem_s41, gaya_rem_s42, speedometer, notes, status);
         uji_kelayakan.setCreated();
         await ctx.uji_kelayakanList.addUji_kelayakan(uji_kelayakan);
