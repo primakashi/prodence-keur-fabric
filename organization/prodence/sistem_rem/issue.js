@@ -47,7 +47,6 @@ PosSistem_rem.createSistem_rem = (data, result) =>{
             sistem_rem.sistem_vakum_pengisian = convert.convertToBool(sistem_rem.sistem_vakum_pengisian);
             sistem_rem.sistem_vakum_pengisian_kereta_gandengan = convert.convertToBool(sistem_rem.sistem_vakum_pengisian_kereta_gandengan);
             sistem_rem.sistem_vakum_penggerak_rem = convert.convertToBool(sistem_rem.sistem_vakum_penggerak_rem);
-            sistem_rem.sistem_vakum_pengisisan_kereta_gandengan = convert.convertToBool(sistem_rem.sistem_vakum_pengisisan_kereta_gandengan);
             sistem_rem.sistem_vakum_tekanan_angin = convert.convertToBool(sistem_rem.sistem_vakum_tekanan_angin);
             sistem_rem.rem_parkir_tuas_tangan = convert.convertToBool(sistem_rem.rem_parkir_tuas_tangan);
             sistem_rem.rem_parkir_speling_tuas = convert.convertToBool(sistem_rem.rem_parkir_speling_tuas);

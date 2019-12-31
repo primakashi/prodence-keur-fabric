@@ -40,7 +40,7 @@ PosBodyFrame.createBodyFrame = (data, result) =>{
             bodyframe.keamanan_bodi = convert.convertToBool(bodyframe.keamanan_bodi);
             bodyframe.kondisi_bodi = convert.convertToBool(bodyframe.kondisi_bodi);
             bodyframe.ruang_pengemudi = convert.convertToBool(bodyframe.ruang_pengemudi);
-            bodyframe.tempat_duduk = convert.convertToBool(bodyframe.tempat_roda_cadangan);
+            bodyframe.tempat_duduk = convert.convertToBool(bodyframe.tempat_duduk);
             bodyframe.sambungan_kereta_gandengan = convert.convertToBool(bodyframe.sambungan_kereta_gandengan);
 
             result(null, {data : bodyframe});

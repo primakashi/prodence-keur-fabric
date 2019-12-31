@@ -44,8 +44,8 @@ PosSistem_rem.updateSistem_rem = (data, result) =>{
             sistem_rem.sistem_vakum_fungsi = convert.convertToBool(sistem_rem.sistem_vakum_fungsi);
             sistem_rem.sistem_vakum_kebocoran = convert.convertToBool(sistem_rem.sistem_vakum_kebocoran);
             sistem_rem.sistem_vakum_pengisian = convert.convertToBool(sistem_rem.sistem_vakum_pengisian);
+            sistem_rem.sistem_vakum_pengisian_kereta_gandengan = convert.convertToBool(sistem_rem.sistem_vakum_pengisian_kereta_gandengan);
             sistem_rem.sistem_vakum_penggerak_rem = convert.convertToBool(sistem_rem.sistem_vakum_penggerak_rem);
-            sistem_rem.sistem_vakum_pengisisan_kereta_gandengan = convert.convertToBool(sistem_rem.sistem_vakum_pengisisan_kereta_gandengan);
             sistem_rem.sistem_vakum_tekanan_angin = convert.convertToBool(sistem_rem.sistem_vakum_tekanan_angin);
             sistem_rem.rem_parkir_tuas_tangan = convert.convertToBool(sistem_rem.rem_parkir_tuas_tangan);
             sistem_rem.rem_parkir_speling_tuas = convert.convertToBool(sistem_rem.rem_parkir_speling_tuas);
@@ -57,7 +57,6 @@ PosSistem_rem.updateSistem_rem = (data, result) =>{
             sistem_rem.efisiensi_rem_perbedaan_belakang = convert.convertToBool(sistem_rem.efisiensi_rem_perbedaan_belakang);
             sistem_rem.efisiensi_rem_parkir = convert.convertToBool(sistem_rem.efisiensi_rem_parkir);
             sistem_rem.sistem_rem_emisi_gas_buang = convert.convertToBool(sistem_rem.sistem_rem_emisi_gas_buang);
-            sistem_rem.sistem_vakum_pengisian_kereta_gandengan = convert.convertToBool(sistem_rem.sistem_vakum_pengisian_kereta_gandengan);
 
             result(null, {data : sistem_rem});
 
