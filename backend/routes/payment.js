@@ -3,8 +3,8 @@ module.exports = (payment) => {
     // const paymentController = require('../../organization/prodence/kendaraan/issue');
     const paymentController = require('../controllers/payment');
 
-    payment.route('/api/payment')
-        .get(paymentController.getPayment);
+    payment.route('/api/payment/get')
+        .post(paymentController.getPayment);
 
     payment.route('/api/payment')
         .post(paymentController.createPayment);

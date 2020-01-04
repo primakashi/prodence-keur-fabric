@@ -3,8 +3,8 @@ module.exports = (request) => {
     // const requestController = require('../../organization/prodence/kendaraan/issue');
     const requestController = require('../controllers/request');
 
-    request.route('/api/request')
-        .get(requestController.getRequest);
+    request.route('/api/request/get')
+        .post(requestController.getRequest);
 
     request.route('/api/request')
         .post(requestController.createRequest);

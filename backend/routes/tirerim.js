@@ -3,8 +3,8 @@ module.exports = (tirerim) => {
     // const vehicleController = require('../../organization/prodence/kendaraan/issue');
     const tirerimController = require('../controllers/tirerim');
 
-    tirerim.route('/api/tirerim')
-        .get(tirerimController.getTireRim);
+    tirerim.route('/api/tirerim/get')
+        .post(tirerimController.getTireRim);
 
     tirerim.route('/api/tirerim')
         .post(tirerimController.createTireRim);

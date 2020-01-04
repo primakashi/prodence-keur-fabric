@@ -3,8 +3,8 @@ module.exports = (tools) => {
     // const toolsController = require('../../organization/prodence/kendaraan/issue');
     const toolsController = require('../controllers/tools');
 
-    tools.route('/api/tools')
-        .get(toolsController.getTools);
+    tools.route('/api/tools/get')
+        .post(toolsController.getTools);
 
     tools.route('/api/tools')
         .post(toolsController.createTools);
