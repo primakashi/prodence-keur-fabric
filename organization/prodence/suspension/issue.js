@@ -33,7 +33,6 @@ PosSuspension.createSuspension = (data, result) =>{
 
             delete suspension.class;
             delete suspension.key;
-            delete suspension.currentState;
 
             suspension.suspensi_roda_depan = convert.convertToBool(suspension.suspensi_roda_depan);
             suspension.suspensi_roda_belakang = convert.convertToBool(suspension.suspensi_roda_belakang);

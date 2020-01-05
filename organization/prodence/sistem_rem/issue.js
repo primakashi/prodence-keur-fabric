@@ -32,7 +32,6 @@ PosSistem_rem.createSistem_rem = (data, result) =>{
 
             delete sistem_rem.class;
             delete sistem_rem.key;
-            delete sistem_rem.currentState;
 
             sistem_rem.pedal_rem = convert.convertToBool(sistem_rem.pedal_rem);
             sistem_rem.speling_pedal = convert.convertToBool(sistem_rem.speling_pedal);

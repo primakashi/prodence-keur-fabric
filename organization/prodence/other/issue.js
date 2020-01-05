@@ -32,7 +32,6 @@ PosOther.createOther = (data, result) =>{
 
             delete other.class;
             delete other.key;
-            delete other.currentState;
 
             other.sistem_bahan_bakar = convert.convertToBool(other.sistem_bahan_bakar);
             other.sistem_kelistrikan = convert.convertToBool(other.sistem_kelistrikan);

@@ -32,7 +32,6 @@ PosPeralatan.createPeralatan = (data, result) =>{
 
             delete peralatan.class;
             delete peralatan.key;
-            delete peralatan.currentState;
 
             peralatan.no_rangka = convert.convertToBool(peralatan.no_rangka);
             peralatan.pelat_pabrik_pembuatnya = convert.convertToBool(peralatan.pelat_pabrik_pembuatnya);

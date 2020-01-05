@@ -32,7 +32,6 @@ PosBodyFrame.createBodyFrame = (data, result) =>{
 
             delete bodyframe.class;
             delete bodyframe.key;
-            delete bodyframe.currentState;
 
             bodyframe.rangka_penopang = convert.convertToBool(bodyframe.rangka_penopang);
             bodyframe.bemper = convert.convertToBool(bodyframe.bemper);

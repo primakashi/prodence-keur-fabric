@@ -32,7 +32,6 @@ PosPenerangan.createPenerangan = (data, result) =>{
 
             delete penerangan.class;
             delete penerangan.key;
-            delete penerangan.currentState;
 
             penerangan.lampu_jauh = convert.convertToBool(penerangan.lampu_jauh);
             penerangan.tambahan_lampu_jauh = convert.convertToBool(penerangan.tambahan_lampu_jauh);

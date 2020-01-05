@@ -31,7 +31,6 @@ PosPembayaran.createPembayaran = (data, result) =>{
 
             delete pembayaran.class;
             delete pembayaran.key;
-            delete pembayaran.currentState;
 
             result(null, {data : pembayaran});
 

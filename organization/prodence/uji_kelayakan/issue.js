@@ -31,7 +31,6 @@ PosUji_kelayakan.createUji_kelayakan = (data, result) =>{
 
             delete uji_kelayakan.class;
             delete uji_kelayakan.key;
-            delete uji_kelayakan.currentState;
 
             uji_kelayakan.side_slip = parseInt(uji_kelayakan.side_slip);
             uji_kelayakan.rem_utama = parseInt(uji_kelayakan.rem_utama);
