@@ -34,14 +34,14 @@ class PeralatanContract extends Contract {
         return peralatan;
     }
 
-    async create(ctx, no_pemeriksaan, no_kendaraan, no_rangka, pelat_pabrik_pembuatnya, pelat_nomor, tulisan, penghapus_kaca_dapan, klakson, kaca_spion, pandangan_ke_depan, kaca_penawar_sinar, alat_pengendalian, lampu_indikasi, speedometer, perlangkapan, status) {
-        let peralatan = Peralatan.createInstance(no_pemeriksaan, no_kendaraan, no_rangka, pelat_pabrik_pembuatnya, pelat_nomor, tulisan, penghapus_kaca_dapan, klakson, kaca_spion, pandangan_ke_depan, kaca_penawar_sinar, alat_pengendalian, lampu_indikasi, speedometer, perlangkapan, status);
+    async create(ctx, no_pemeriksaan, no_kendaraan, no_rangka, pelat_pabrik_pembuatnya, pelat_nomor, tulisan, penghapus_kaca_dapan, klakson, kaca_spion, pandangan_ke_depan, kaca_penawar_sinar, alat_pengendalian, lampu_indikasi, speedometer, perlangkapan, notes, status) {
+        let peralatan = Peralatan.createInstance(no_pemeriksaan, no_kendaraan, no_rangka, pelat_pabrik_pembuatnya, pelat_nomor, tulisan, penghapus_kaca_dapan, klakson, kaca_spion, pandangan_ke_depan, kaca_penawar_sinar, alat_pengendalian, lampu_indikasi, speedometer, perlangkapan, notes, status);
         peralatan.setCreated();
         await ctx.peralatanList.addPeralatan(peralatan);
         return peralatan;
     }
 
-    async update(ctx, no_pemeriksaan, no_kendaraan, newNoRangka, newPelatPabrik, newPelatNomor, newTulisan, newPenghapusKacaDepan, newKlakson, newKacaSpion, newPandangan, newKacaPenawarSinar, newAlatPengendalian, newLampuIndikasi, newSpeedometer, newPerlengkapan, newStatus) {
+    async update(ctx, no_pemeriksaan, no_kendaraan, newNoRangka, newPelatPabrik, newPelatNomor, newTulisan, newPenghapusKacaDepan, newKlakson, newKacaSpion, newPandangan, newKacaPenawarSinar, newAlatPengendalian, newLampuIndikasi, newSpeedometer, newPerlengkapan, newNotes, newStatus) {
         let peralatanKey = Peralatan.makeKey([no_pemeriksaan, no_kendaraan]);
         let peralatan = await ctx.peralatanList.getPeralatan(peralatanKey);
         if (peralatan.getNoKendaraan() !== no_kendaraan) {
@@ -51,7 +51,7 @@ class PeralatanContract extends Contract {
             peralatan.setUpdated();
         }
         if (peralatan.isUpdated()) {
-            peralatan.setPemeriksaanPeralatan(newNoRangka, newPelatPabrik, newPelatNomor, newTulisan, newPenghapusKacaDepan, newKlakson, newKacaSpion, newPandangan, newKacaPenawarSinar, newAlatPengendalian, newLampuIndikasi, newSpeedometer, newPerlengkapan, newStatus);
+            peralatan.setPemeriksaanPeralatan(newNoRangka, newPelatPabrik, newPelatNomor, newTulisan, newPenghapusKacaDepan, newKlakson, newKacaSpion, newPandangan, newKacaPenawarSinar, newAlatPengendalian, newLampuIndikasi, newSpeedometer, newPerlengkapan, newNotes, newStatus);
         } else {
             throw new Error('Pemeriksaan ' + no_pemeriksaan +  ' is cant be updated. Current state = ' + peralatan.getCurrentState());
         }

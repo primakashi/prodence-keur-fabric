@@ -27,7 +27,7 @@ PosBodyFrame.updateBodyFrame = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('bodyframecontract');
-            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.rangka_penopang.toString(), data.bemper.toString(), data.tempat_roda_cadangan.toString(), data.keamanan_bodi.toString(), data.kondisi_bodi.toString(), data.ruang_pengemudi.toString(), data.tempat_duduk.toString(), data.sambungan_kereta_gandengan.toString(), data.status);
+            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.rangka_penopang.toString(), data.bemper.toString(), data.tempat_roda_cadangan.toString(), data.keamanan_bodi.toString(), data.kondisi_bodi.toString(), data.ruang_pengemudi.toString(), data.tempat_duduk.toString(), data.sambungan_kereta_gandengan.toString(), data.notes, data.status);
             let bodyframe = BodyFrame.fromBuffer(issueResponse);
 
             delete bodyframe.class;

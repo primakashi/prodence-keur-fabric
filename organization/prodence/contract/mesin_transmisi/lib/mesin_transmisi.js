@@ -22,13 +22,14 @@ class Mesin_transmisi extends State {
         return this.no_kendaraan;
     }
 
-    setPemeriksaanMesin_transmisi(newDudukanMesin, newKondisiMesin, newTransmisi, newSistemGasBuang, newEmisiAsap, newEmisiCo, newStatus) {
+    setPemeriksaanMesin_transmisi(newDudukanMesin, newKondisiMesin, newTransmisi, newSistemGasBuang, newEmisiAsap, newEmisiCo, newNotes, newStatus) {
         this.dudukan_mesin = newDudukanMesin;
         this.kondisi_mesin = newKondisiMesin;
         this.transmisi = newTransmisi;
         this.sistem_gas_buang = newSistemGasBuang;
         this.emisi_asap= newEmisiAsap;
         this.emisi_co = newEmisiCo;
+        this.notes = newNotes;
         this.status = newStatus;
 
     }
@@ -69,8 +70,8 @@ class Mesin_transmisi extends State {
         return State.deserializeClass(data, Mesin_transmisi);
     }
 
-    static createInstance(no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, status) {
-        return new Mesin_transmisi({ no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, status});
+    static createInstance(no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, notes, status) {
+        return new Mesin_transmisi({ no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, notes, status});
     }
 
     static getClass() {

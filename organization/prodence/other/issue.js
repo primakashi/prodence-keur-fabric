@@ -27,7 +27,7 @@ PosOther.createOther = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('othercontract');
-            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.sistem_bahan_bakar.toString(), data.sistem_kelistrikan.toString(), data.status);
+            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.sistem_bahan_bakar.toString(), data.sistem_kelistrikan.toString(), data.notes, data.status);
             let other = Other.fromBuffer(issueResponse);
 
             delete other.class;

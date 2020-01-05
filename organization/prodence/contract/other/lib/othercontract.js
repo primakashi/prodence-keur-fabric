@@ -34,14 +34,14 @@ class OtherContract extends Contract {
         return other;
     }
 
-    async create(ctx, no_pemeriksaan, no_kendaraan, sistem_bahan_bakar, sistem_kelistrikan, status) {
-        let other = Other.createInstance(no_pemeriksaan, no_kendaraan, sistem_bahan_bakar, sistem_kelistrikan, status);
+    async create(ctx, no_pemeriksaan, no_kendaraan, sistem_bahan_bakar, sistem_kelistrikan, notes, status) {
+        let other = Other.createInstance(no_pemeriksaan, no_kendaraan, sistem_bahan_bakar, sistem_kelistrikan, notes, status);
         other.setCreated();
         await ctx.otherList.addOther(other);
         return other;
     }
 
-    async update(ctx, no_pemeriksaan, no_kendaraan,newSistemBahanBakar, newSistemKelistrikan, newStatus) {
+    async update(ctx, no_pemeriksaan, no_kendaraan,newSistemBahanBakar, newSistemKelistrikan, newNotes, newStatus) {
         let otherKey = Other.makeKey([no_pemeriksaan, no_kendaraan]);
         let other = await ctx.otherList.getOther(otherKey);
         if (other.getPemeriksaan() !== no_pemeriksaan) {
@@ -51,7 +51,7 @@ class OtherContract extends Contract {
             other.setUpdated();
         }
         if (other.isUpdated()) {
-            other.setOther(newSistemBahanBakar, newSistemKelistrikan, newStatus);
+            other.setOther(newSistemBahanBakar, newSistemKelistrikan, newNotes, newStatus);
         } else {
             throw new Error('Pemeriksaan ' + no_pemeriksaan +  ' is cant be updated. Current state = ' + other.getCurrentState());
         }

@@ -34,14 +34,14 @@ class PeneranganContract extends Contract {
         return penerangan;
     }
 
-    async create(ctx, no_pemeriksaan, no_kendaraan, lampu_jauh, tambahan_lampu_jauh, lampu_dekat, arah_lampu, lampu_kabut, lampu_posisi, lampu_belakang, lampu_rem, lampu_plat_nomor, lampu_mundur, lampu_kabut_belakang, lampu_peringatan, reflektor_merah, lampu_tambahan_lain, status) {
-        let penerangan = Penerangan.createInstance(no_pemeriksaan, no_kendaraan, lampu_jauh, tambahan_lampu_jauh, lampu_dekat, arah_lampu, lampu_kabut, lampu_posisi, lampu_belakang, lampu_rem, lampu_plat_nomor, lampu_mundur, lampu_kabut_belakang, lampu_peringatan, reflektor_merah, lampu_tambahan_lain, status);
+    async create(ctx, no_pemeriksaan, no_kendaraan, lampu_jauh, tambahan_lampu_jauh, lampu_dekat, arah_lampu, lampu_kabut, lampu_posisi, lampu_belakang, lampu_rem, lampu_plat_nomor, lampu_mundur, lampu_kabut_belakang, lampu_peringatan, reflektor_merah, lampu_tambahan_lain, notes, status) {
+        let penerangan = Penerangan.createInstance(no_pemeriksaan, no_kendaraan, lampu_jauh, tambahan_lampu_jauh, lampu_dekat, arah_lampu, lampu_kabut, lampu_posisi, lampu_belakang, lampu_rem, lampu_plat_nomor, lampu_mundur, lampu_kabut_belakang, lampu_peringatan, reflektor_merah, lampu_tambahan_lain, notes, status);
         penerangan.setCreated();
         await ctx.peneranganList.addPenerangan(penerangan);
         return penerangan;
     }
 
-    async update(ctx, no_pemeriksaan, no_kendaraan, newLampuJauh, newTambahanLampuJauh, newLampuDekat, newArahLampu, newLampuKabut, newLampuPosisi, newLampuBelakang, newLampuRem, newLampuPlat, newLampuMundur, newLampuKabutBelakang, newLampuPeringatan, newReflektorMerah, newLampuTambahanLain, newStatus) {
+    async update(ctx, no_pemeriksaan, no_kendaraan, newLampuJauh, newTambahanLampuJauh, newLampuDekat, newArahLampu, newLampuKabut, newLampuPosisi, newLampuBelakang, newLampuRem, newLampuPlat, newLampuMundur, newLampuKabutBelakang, newLampuPeringatan, newReflektorMerah, newLampuTambahanLain, newNotes, newStatus) {
         let peneranganKey = Penerangan.makeKey([no_pemeriksaan, no_kendaraan]);
         let penerangan = await ctx.peneranganList.getPenerangan(peneranganKey);
         if (penerangan.getNoKendaraan() !== no_kendaraan) {
@@ -51,7 +51,7 @@ class PeneranganContract extends Contract {
             penerangan.setUpdated();
         }
         if (penerangan.isUpdated()) {
-            penerangan.setPenerangan(newLampuJauh, newTambahanLampuJauh, newLampuDekat, newArahLampu, newLampuKabut, newLampuPosisi, newLampuBelakang, newLampuRem, newLampuPlat, newLampuMundur, newLampuKabutBelakang, newLampuPeringatan, newReflektorMerah, newLampuTambahanLain, newStatus);
+            penerangan.setPenerangan(newLampuJauh, newTambahanLampuJauh, newLampuDekat, newArahLampu, newLampuKabut, newLampuPosisi, newLampuBelakang, newLampuRem, newLampuPlat, newLampuMundur, newLampuKabutBelakang, newLampuPeringatan, newReflektorMerah, newLampuTambahanLain, newNotes, newStatus);
         } else {
             throw new Error('Pemeriksaan ' + no_pemeriksaan +  ' is cant be updated. Current state = ' + penerangan.getCurrentState());
         }

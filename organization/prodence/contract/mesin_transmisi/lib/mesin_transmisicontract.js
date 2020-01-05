@@ -34,14 +34,14 @@ class Mesin_transmisiContract extends Contract {
         return mesin_transmisi;
     }
 
-    async create(ctx, no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, status) {
-        let mesin_transmisi = Mesin_transmisi.createInstance(no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, status);
+    async create(ctx, no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, notes, status) {
+        let mesin_transmisi = Mesin_transmisi.createInstance(no_pemeriksaan, no_kendaraan, dudukan_mesin, kondisi_mesin, transmisi, sistem_gas_buang, emisi_asap, emisi_co, notes, status);
         mesin_transmisi.setCreated();
         await ctx.mesin_transmisiList.addMesin_transmisi(mesin_transmisi);
         return mesin_transmisi;
     }
 
-    async update(ctx, no_pemeriksaan, no_kendaraan, newDudukanMesin, newKondisiMesin, newTransmisi, newSistemGasBuang, newEmisiAsap, newEmisiCo, newStatus) {
+    async update(ctx, no_pemeriksaan, no_kendaraan, newDudukanMesin, newKondisiMesin, newTransmisi, newSistemGasBuang, newEmisiAsap, newEmisiCo, newNotes, newStatus) {
         let mesin_transmisiKey = Mesin_transmisi.makeKey([no_pemeriksaan, no_kendaraan]);
         let mesin_transmisi = await ctx.mesin_transmisiList.getMesin_transmisi(mesin_transmisiKey);
         if (mesin_transmisi.getNoKendaraan() !== no_kendaraan) {
@@ -51,7 +51,7 @@ class Mesin_transmisiContract extends Contract {
             mesin_transmisi.setUpdated();
         }
         if (mesin_transmisi.isUpdated()) {
-            mesin_transmisi.setPemeriksaanMesin_transmisi(newDudukanMesin, newKondisiMesin, newTransmisi, newSistemGasBuang, newEmisiAsap, newEmisiCo, newStatus);
+            mesin_transmisi.setPemeriksaanMesin_transmisi(newDudukanMesin, newKondisiMesin, newTransmisi, newSistemGasBuang, newEmisiAsap, newEmisiCo, newNotes, newStatus);
         } else {
             throw new Error('Pemeriksaan ' + no_pemeriksaan +  ' is cant be updated. Current state = ' + mesin_transmisi.getCurrentState());
         }

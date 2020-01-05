@@ -26,7 +26,7 @@ class BodyFrame extends State {
         return this.no_kendaraan;
     }
 
-    setBodyFrame(newRangkaPenopang, newBemper, newTempatRoda, newKeamananBodi, newKondisiBody, newRuangPengemudi, newTempatDuduk, newSambunganKereta, newStatus) {
+    setBodyFrame(newRangkaPenopang, newBemper, newTempatRoda, newKeamananBodi, newKondisiBody, newRuangPengemudi, newTempatDuduk, newSambunganKereta, newNotes, newStatus) {
         this.rangka_penopang = newRangkaPenopang;
         this.bemper = newBemper;
         this.tempat_roda_cadangan = newTempatRoda;
@@ -35,6 +35,8 @@ class BodyFrame extends State {
         this.ruang_pengemudi = newRuangPengemudi;
         this.tempat_duduk = newTempatDuduk;
         this.sambungan_kereta_gandengan = newSambunganKereta;
+        this.notes = newNotes;
+        this.status = newStatus;
     }
 
     setCreated() {
@@ -73,8 +75,8 @@ class BodyFrame extends State {
         return State.deserializeClass(data, BodyFrame);
     }
 
-    static createInstance(no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, status) {
-        return new BodyFrame({ no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, status });
+    static createInstance(no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, notes, status) {
+        return new BodyFrame({ no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, notes, status });
     }
 
     static getClass() {

@@ -27,7 +27,7 @@ PosSuspension.updateSuspension = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('suspensioncontract');
-            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.suspensi_roda_depan.toString(), data.suspensi_roda_belakang.toString(), data.sumbu.toString(), data.pemasangan_sumbu.toString(), data.pegas.toString(), data.bantalan_roda.toString(), data.status);
+            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.suspensi_roda_depan.toString(), data.suspensi_roda_belakang.toString(), data.sumbu.toString(), data.pemasangan_sumbu.toString(), data.pegas.toString(), data.bantalan_roda.toString(), data.notes, data.status);
             let suspension = Suspension.fromBuffer(issueResponse);
 
             delete suspension.class;

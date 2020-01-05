@@ -26,13 +26,14 @@ class TireRim extends State {
         return this.no_kendaraan;
     }
 
-    setTireRim(newUkuranJenisBan, newKeadaanBan, newKedalamanKembangBan, newUkuranJenisPelek, newPelek, newPenguatanBan, newStatus) {
+    setTireRim(newUkuranJenisBan, newKeadaanBan, newKedalamanKembangBan, newUkuranJenisPelek, newPelek, newPenguatanBan, newNotes, newStatus) {
         this.ukuran_dan_jenis_ban = newUkuranJenisBan;
         this.keadaan_ban = newKeadaanBan;
         this.kedalaman_kembang_ban = newKedalamanKembangBan;
         this.ukuran_dan_jenis_pelek = newUkuranJenisPelek;
         this.keadaan_pelek = newPelek;
         this.penguatan_ban = newPenguatanBan;
+        this.notes = newNotes;
         this.status = newStatus;
     }
 
