@@ -45,7 +45,7 @@ PosPenerangan.updatePenerangan = (data, result) =>{
             penerangan.lampu_plat_nomor = convert.convertToBool(penerangan.lampu_plat_nomor);
             penerangan.lampu_mundur = convert.convertToBool(penerangan.lampu_mundur);
             penerangan.lampu_kabut_belakang = convert.convertToBool(penerangan.lampu_kabut_belakang);
-            penerangan.lampu_peringatan = convert.convertToBool(penerangan .lampu_peringata);
+            penerangan.lampu_peringatan = convert.convertToBool(penerangan.lampu_peringatan);
             penerangan.reflektor_merah = convert.convertToBool(penerangan.reflektor_merah);
             penerangan.lampu_tambahan_lain = convert.convertToBool(penerangan.lampu_tambahan_lain);
 
