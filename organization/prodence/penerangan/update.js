@@ -28,7 +28,7 @@ PosPenerangan.updatePenerangan = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('penerangancontract');
-            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.lampu_jauh.toString(), data.tambahan_lampu_jauh.toString(), data.lampu_dekat.toString(), data.arah_lampu.toString(), data.lampu_kabut.toString(), data.lampu_posisi.toString(), data.lampu_belakang.toString(), data.lampu_rem.toString(), data.lampu_plat_nomor.toString(), data.lampu_mundur.toString(), data.lampu_kabut_belakang.toString(), data.lampu_peringatan.toString(), data.reflektor_merah.toString(), data.lampu_tambahan_lain.toString(), data.status);
+            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.lampu_jauh.toString(), data.tambahan_lampu_jauh.toString(), data.lampu_dekat.toString(), data.arah_lampu.toString(), data.lampu_kabut.toString(), data.lampu_posisi.toString(), data.lampu_belakang.toString(), data.lampu_rem.toString(), data.lampu_plat_nomor.toString(), data.lampu_mundur.toString(), data.lampu_kabut_belakang.toString(), data.lampu_peringatan.toString(), data.reflektor_merah.toString(), data.lampu_tambahan_lain.toString(), data.notes, data.status);
             let penerangan = Penerangan.fromBuffer(issueResponse);
 
             delete penerangan.class;

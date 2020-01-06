@@ -34,14 +34,14 @@ class BodyFrameContract extends Contract {
         return bodyframe;
     }
 
-    async create(ctx, no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, status) {
-        let bodyframe = BodyFrame.createInstance(no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, status);
+    async create(ctx, no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, notes, status) {
+        let bodyframe = BodyFrame.createInstance(no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, notes, status);
         bodyframe.setCreated();
         await ctx.bodyframeList.addBodyFrame(bodyframe);
         return bodyframe;
     }
 
-    async update(ctx, no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, status) {
+    async update(ctx, no_pemeriksaan, no_kendaraan, rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, notes, status) {
         let bodyframeKey = BodyFrame.makeKey([no_pemeriksaan, no_kendaraan]);
         let bodyframe = await ctx.bodyframeList.getBodyFrame(bodyframeKey);
         if (bodyframe.getNoKendaraan() !== no_kendaraan) {
@@ -51,7 +51,7 @@ class BodyFrameContract extends Contract {
             bodyframe.setUpdated();
         }
         if (bodyframe.isUpdated()) {
-            bodyframe.setBodyFrame(rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, status);
+            bodyframe.setBodyFrame(rangka_penopang, bemper, tempat_roda_cadangan, keamanan_bodi, kondisi_bodi, ruang_pengemudi, tempat_duduk, sambungan_kereta_gandengan, notes, status);
         } else {
             throw new Error('Pemeriksaan ' + no_pemeriksaan +  ' is cant be updated. Current state = ' + bodyframe.getCurrentState());
         }

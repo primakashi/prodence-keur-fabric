@@ -34,14 +34,14 @@ class TireRimContract extends Contract {
         return tirerim;
     }
 
-    async create(ctx, no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, status) {
-        let tirerim = TireRim.createInstance(no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, status);
+    async create(ctx, no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, notes, status) {
+        let tirerim = TireRim.createInstance(no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, notes, status);
         tirerim.setCreated();
         await ctx.tirerimList.addTireRim(tirerim);
         return tirerim;
     }
 
-    async update(ctx, no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, status) {
+    async update(ctx, no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, notes, status) {
         let tirerimKey = TireRim.makeKey([no_pemeriksaan, no_kendaraan]);
         let tirerim = await ctx.tirerimList.getTireRim(tirerimKey);
         if (tirerim.getNoKendaraan() !== no_kendaraan) {
@@ -51,7 +51,7 @@ class TireRimContract extends Contract {
             tirerim.setUpdated();
         }
         if (tirerim.isUpdated()) {
-            tirerim.setTireRim(ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, status);
+            tirerim.setTireRim(ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, notes, status);
         } else {
             throw new Error('Pemeriksaan ' + no_pemeriksaan +  ' is cant be updated. Current state = ' + tirerim.getCurrentState());
         }

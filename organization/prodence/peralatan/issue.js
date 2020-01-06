@@ -27,7 +27,7 @@ PosPeralatan.createPeralatan = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('peralatancontract');
-            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan.toString(), data.no_kendaraan.toString(), data.no_rangka.toString(), data.pelat_pabrik_pembuatnya.toString(), data.pelat_nomor.toString(), data.tulisan.toString(), data.penghapus_kaca_dapan.toString(), data.klakson.toString(), data.kaca_spion.toString(), data.pandangan_ke_depan.toString(), data.kaca_penawar_sinar.toString(), data.alat_pengendalian.toString(), data.lampu_indikasi.toString(), data.speedometer.toString(), data.perlangkapan.toString(), data.status);
+            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan.toString(), data.no_kendaraan.toString(), data.no_rangka.toString(), data.pelat_pabrik_pembuatnya.toString(), data.pelat_nomor.toString(), data.tulisan.toString(), data.penghapus_kaca_dapan.toString(), data.klakson.toString(), data.kaca_spion.toString(), data.pandangan_ke_depan.toString(), data.kaca_penawar_sinar.toString(), data.alat_pengendalian.toString(), data.lampu_indikasi.toString(), data.speedometer.toString(), data.perlangkapan.toString(), data.notes, data.status);
             let peralatan = Peralatan.fromBuffer(issueResponse);
 
             delete peralatan.class;

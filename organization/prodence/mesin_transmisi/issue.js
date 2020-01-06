@@ -27,13 +27,13 @@ PosMesin_transmisi.createMesin_transmisi = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('mesin_transmisicontract');
-            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.dudukan_mesin.toString(), data.kondisi_mesin.toString(), data.transmisi.toString(), data.sistem_gas_buang.toString(), data.emisi_asap.toString(), data.emisi_co.toString(), data.status);
+            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.dudukan_mesin.toString(), data.kondisi_mesin.toString(), data.transmisi.toString(), data.sistem_gas_buang.toString(), data.emisi_asap.toString(), data.emisi_co.toString(), data.notes, data.status);
             let mesin_transmisi = Mesin_transmisi.fromBuffer(issueResponse);
 
             delete mesin_transmisi.class;
             delete mesin_transmisi.key;
             delete mesin_transmisi.currentState;
-          
+
             mesin_transmisi.dudukan_mesin = convert.convertToBool(mesin_transmisi.dudukan_mesin);
             mesin_transmisi.kondisi_mesin = convert.convertToBool(mesin_transmisi.kondisi_mesin);
             mesin_transmisi.transmisi = convert.convertToBool(mesin_transmisi.transmisi);

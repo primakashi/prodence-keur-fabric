@@ -26,13 +26,14 @@ class Suspension extends State {
         return this.no_kendaraan;
     }
 
-    setSuspension(newSuspensiRodaDepan, newSuspensiRodaBelakang, newSumbu, newPemasanganSumbu, newPegas, newBantalanRoda, newStatus) {
+    setSuspension(newSuspensiRodaDepan, newSuspensiRodaBelakang, newSumbu, newPemasanganSumbu, newPegas, newBantalanRoda, newNotes, newStatus) {
         this.suspensi_roda_depan = newSuspensiRodaDepan;
         this.suspensi_roda_belakang = newSuspensiRodaBelakang;
         this.sumbu = newSumbu;
         this.pemasangan_sumbu = newPemasanganSumbu;
         this.pegas = newPegas;
         this.bantalan_roda = newBantalanRoda;
+        this.notes = newNotes;
         this.status = newStatus;
     }
 
@@ -72,8 +73,8 @@ class Suspension extends State {
         return State.deserializeClass(data, Suspension);
     }
 
-    static createInstance(no_pemeriksaan, no_kendaraan, suspensi_roda_depan, suspensi_roda_belakang, sumbu, pemasangan_sumbu, pegas, bantalan_roda, status) {
-        return new Suspension({ no_pemeriksaan, no_kendaraan, suspensi_roda_depan, suspensi_roda_belakang, sumbu, pemasangan_sumbu, pegas, bantalan_roda, status });
+    static createInstance(no_pemeriksaan, no_kendaraan, suspensi_roda_depan, suspensi_roda_belakang, sumbu, pemasangan_sumbu, pegas, bantalan_roda, notes, status) {
+        return new Suspension({ no_pemeriksaan, no_kendaraan, suspensi_roda_depan, suspensi_roda_belakang, sumbu, pemasangan_sumbu, pegas, bantalan_roda, notes, status });
     }
 
     static getClass() {

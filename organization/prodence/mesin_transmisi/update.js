@@ -27,7 +27,7 @@ PosMesin_transmisi.updateMesin_transmisi = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('mesin_transmisicontract');
-            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.dudukan_mesin.toString(), data.kondisi_mesin.toString(), data.transmisi.toString(), data.sistem_gas_buang.toString(), data.emisi_asap.toString(), data.emisi_co.toString(), data.status);
+            const issueResponse = await contract.submitTransaction('update', data.no_pemeriksaan, data.no_kendaraan, data.dudukan_mesin.toString(), data.kondisi_mesin.toString(), data.transmisi.toString(), data.sistem_gas_buang.toString(), data.emisi_asap.toString(), data.emisi_co.toString(), data.notes, data.status);
             let mesin_transmisi = Mesin_transmisi.fromBuffer(issueResponse);
 
             delete mesin_transmisi.class;

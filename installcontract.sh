@@ -2,7 +2,7 @@ docker exec prodence peer chaincode install -n kendaraancontract -v 0 -p /opt/go
 docker exec prodence peer chaincode instantiate -n kendaraancontract -v 0 -l node -c '{"Args":["org.prodence.kendaraan:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
 
 docker exec prodence peer chaincode install -n permohonancontract -v 0 -p /opt/gopath/src/github.com/contract/permohonan -l node
-docker exec prodence peer chaincode instantiate -n permohonancontract -v 0 -l node -c '{"Args":["org.prodence.permohonan:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
+docker exec prodence peer chaincode instantiate -n permohonancontract -v 0 -l nod./
 
 docker exec prodence peer chaincode install -n peralatancontract -v 0 -p /opt/gopath/src/github.com/contract/peralatan -l node
 docker exec prodence peer chaincode instantiate -n peralatancontract -v 0 -l node -c '{"Args":["org.prodence.peralatan:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
@@ -33,3 +33,6 @@ docker exec prodence peer chaincode instantiate -n sistem_remcontract -v 0 -l no
 
 docker exec prodence peer chaincode install -n uji_kelayakancontract -v 0 -p /opt/gopath/src/github.com/contract/uji_kelayakan -l node
 docker exec prodence peer chaincode instantiate -n uji_kelayakancontract -v 0 -l node -c '{"Args":["org.prodence.uji_kelayakan:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"
+
+docker exec prodence peer chaincode install -n sistem_kemudicontract -v 0 -p /opt/gopath/src/github.com/contract/sistem_kemudi -l node
+docker exec prodence peer chaincode instantiate -n sistem_kemudicontract -v 0 -l node -c '{"Args":["org.prodence.sistem_kemudi:instantiate"]}' -C mychannel -P "AND ('Org1MSP.member')"

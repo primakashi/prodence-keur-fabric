@@ -27,7 +27,7 @@ PosTireRim.createTireRim = (data, result) =>{
             await gateway.connect(connectionProfile, connectionOptions);
             const network = await gateway.getNetwork('mychannel');
             const contract = await network.getContract('tirerimcontract');
-            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.ukuran_dan_jenis_ban.toString(), data.keadaan_ban.toString(), data.kedalaman_kembang_ban.toString(), data.ukuran_dan_jenis_pelek.toString(), data.keadaan_pelek.toString(), data.penguatan_ban.toString(), data.status);
+            const issueResponse = await contract.submitTransaction('create', data.no_pemeriksaan, data.no_kendaraan, data.ukuran_dan_jenis_ban.toString(), data.keadaan_ban.toString(), data.kedalaman_kembang_ban.toString(), data.ukuran_dan_jenis_pelek.toString(), data.keadaan_pelek.toString(), data.penguatan_ban.toString(), data.notes, data.status);
             let tirerim = TireRim.fromBuffer(issueResponse);
 
             delete tirerim.class;

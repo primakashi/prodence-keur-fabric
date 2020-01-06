@@ -26,9 +26,10 @@ class Other extends State {
         return this.no_pemeriksaan;
     }
 
-    setOther(newSistemBahanBakar, newSistemKelistrikan, newStatus) {
+    setOther(newSistemBahanBakar, newSistemKelistrikan, newNotes, newStatus) {
         this.sistem_bahan_bakar = newSistemBahanBakar;
         this.sistem_kelistrikan = newSistemKelistrikan;
+        this.notes = newNotes;
         this.status = newStatus;
 
     }
@@ -69,8 +70,8 @@ class Other extends State {
         return State.deserializeClass(data, Other);
     }
 
-    static createInstance(no_pemeriksaan, no_kendaraan, sistem_bahan_bakar, sistem_kelistrikan, status) {
-        return new Other({ no_pemeriksaan, no_kendaraan,sistem_bahan_bakar, sistem_kelistrikan,status});
+    static createInstance(no_pemeriksaan, no_kendaraan, sistem_bahan_bakar, sistem_kelistrikan, notes, status) {
+        return new Other({ no_pemeriksaan, no_kendaraan,sistem_bahan_bakar, sistem_kelistrikan, notes, status});
     }
 
     static getClass() {
