@@ -32,7 +32,6 @@ PosMesin_transmisi.createMesin_transmisi = (data, result) =>{
 
             delete mesin_transmisi.class;
             delete mesin_transmisi.key;
-            delete mesin_transmisi.currentState;
 
             mesin_transmisi.dudukan_mesin = convert.convertToBool(mesin_transmisi.dudukan_mesin);
             mesin_transmisi.kondisi_mesin = convert.convertToBool(mesin_transmisi.kondisi_mesin);
