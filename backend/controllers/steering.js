@@ -1,6 +1,6 @@
 const CryptoJS = require('crypto-js');
 const newRequest = require('../../organization/prodence/sistem_kemudi/issue');
-const getOneRequest = require('../../organization/prodence/sistem_kemudi/get');
+const getOneRequest = require('../../organization/prodence/sistem_kemudi/getsistem_kemudi');
 const updateDataRequest = require('../../organization/prodence/sistem_kemudi/update');
 const deleteDataRequest = require('../../organization/prodence/sistem_kemudi/delete');
 const checkToken = require('./check_token');
@@ -15,7 +15,7 @@ exports.getSteering = (req, res) => { // eslint-disable-line
         // const valid = true;
 
         if (valid) {
-            getOneRequest.getSteering(req.body, (err,data)=>{
+            getOneRequest.getSistem_kemudi(req.body, (err,data)=>{
                 if (err) {
                     res.status(400);
                     res.send({
@@ -56,7 +56,7 @@ exports.createSteering = (req, res) => { // eslint-disable-line
         // const valid = true;
 
         if (valid) {
-            newRequest.createSteering(req.body, (err,data)=>{
+            newRequest.createSistem_kemudi(req.body, (err,data)=>{
                 if (err) {
                     res.status(400);
                     res.send({
@@ -97,7 +97,7 @@ exports.updateSteering = (req, res) => { // eslint-disable-line
         // const valid = true;
 
         if (valid) {
-            updateDataRequest.updateSteering(req.body, (err,data)=>{
+            updateDataRequest.updateSistem_kemudi(req.body, (err,data)=>{
                 if (err) {
                     res.status(400);
                     res.send({
@@ -138,7 +138,7 @@ exports.deleteSteering = (req, res) => { // eslint-disable-line
         // const valid = true;
 
         if (valid) {
-            deleteDataRequest.deleteSteering(req.body, (err,data)=>{
+            deleteDataRequest.deleteSistem_kemudi(req.body, (err,data)=>{
                 if (err) {
                     res.status(400);
                     res.send({

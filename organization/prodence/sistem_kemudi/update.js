@@ -12,7 +12,7 @@ let walletPath =  path.resolve(__dirname,'../identity/user/adminkeur/wallet');
 const wallet = new FileSystemWallet(walletPath);
 const PosSistem_kemudi = () => {};
 
-PosSistem_kemudi.updateSsistem_kemudi = (data, result) =>{
+PosSistem_kemudi.updateSistem_kemudi = (data, result) =>{
     async function main() {
         const gateway = new Gateway();
         try {
