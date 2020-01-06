@@ -33,7 +33,6 @@ PosSistem_kemudi.createSistem_kemudi = (data, result) =>{
 
             delete sistem_kemudi.class;
             delete sistem_kemudi.key;
-            delete sistem_kemudi.currentState;
 
             sistem_kemudi.roda_kemudi = convert.convertToBool(sistem_kemudi.roda_kemudi);
             sistem_kemudi.speling_roda_kemudi = convert.convertToBool(sistem_kemudi.speling_roda_kemudi);
