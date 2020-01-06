@@ -73,8 +73,8 @@ class TireRim extends State {
         return State.deserializeClass(data, TireRim);
     }
 
-    static createInstance(no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, status) {
-        return new TireRim({ no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, status });
+    static createInstance(no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, notes, status) {
+        return new TireRim({ no_pemeriksaan, no_kendaraan, ukuran_dan_jenis_ban, keadaan_ban, kedalaman_kembang_ban, ukuran_dan_jenis_pelek, keadaan_pelek, penguatan_ban, notes, status });
     }
 
     static getClass() {
