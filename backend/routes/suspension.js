@@ -3,8 +3,8 @@ module.exports = (suspension) => {
     // const vehicleController = require('../../organization/prodence/kendaraan/issue');
     const suspensionController = require('../controllers/suspension');
 
-    suspension.route('/api/suspension')
-        .get(suspensionController.getSuspension);
+    suspension.route('/api/suspension/get')
+        .post(suspensionController.getSuspension);
 
     suspension.route('/api/suspension')
         .post(suspensionController.createSuspension);

@@ -3,8 +3,8 @@ module.exports = (bodyframe) => {
     // const vehicleController = require('../../organization/prodence/kendaraan/issue');
     const bodyframeController = require('../controllers/bodyframe');
 
-    bodyframe.route('/api/bodyframe')
-        .get(bodyframeController.getBodyFrame);
+    bodyframe.route('/api/bodyframe/get')
+        .post(bodyframeController.getBodyFrame);
 
     bodyframe.route('/api/bodyframe')
         .post(bodyframeController.createBodyFrame);

@@ -3,8 +3,8 @@ module.exports = (feasibility) => {
     // const feasibilityController = require('../../organization/prodence/kendaraan/issue');
     const feasibilityController = require('../controllers/feasibility');
 
-    feasibility.route('/api/feasibility')
-        .get(feasibilityController.getFeasibility);
+    feasibility.route('/api/feasibility/get')
+        .post(feasibilityController.getFeasibility);
 
         feasibility.route('/api/feasibility')
         .post(feasibilityController.createFeasibility);

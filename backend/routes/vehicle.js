@@ -3,8 +3,8 @@ module.exports = (vehicle) => {
     // const vehicleController = require('../../organization/prodence/kendaraan/issue');
     const vehicleController = require('../controllers/vehicle');
 
-    vehicle.route('/api/vehicle')
-        .get(vehicleController.getAllVehicle);
+    vehicle.route('/api/vehicle/get')
+        .post(vehicleController.getAllVehicle);
 
     vehicle.route('/api/vehicle')
         .post(vehicleController.createVehicle);

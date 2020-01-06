@@ -3,8 +3,8 @@ module.exports = (brake) => {
     // const brakeController = require('../../organization/prodence/kendaraan/issue');
     const brakeController = require('../controllers/brake');
 
-    brake.route('/api/brake')
-        .get(brakeController.getBrake);
+    brake.route('/api/brake/get')
+        .post(brakeController.getBrake);
 
     brake.route('/api/brake')
         .post(brakeController.createBrake);

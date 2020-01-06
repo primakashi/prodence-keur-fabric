@@ -31,7 +31,6 @@ Vehicle.createVehicle = (data, result) =>{
 
             delete kendaraan.class;
             delete kendaraan.key;
-            delete kendaraan.currentState;
 
             result(null, {data : kendaraan});
 

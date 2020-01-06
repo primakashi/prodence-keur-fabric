@@ -32,7 +32,6 @@ PosPermohonan.createPermohonan = (data, result) =>{
 
             delete permohonan.class;
             delete permohonan.key;
-            delete permohonan.currentState;
 
             result(null, {data : permohonan});
 

@@ -32,7 +32,6 @@ PosTireRim.createTireRim = (data, result) =>{
 
             delete tirerim.class;
             delete tirerim.key;
-            delete tirerim.currentState;
 
             tirerim.ukuran_dan_jenis_ban = convert.convertToBool(tirerim.ukuran_dan_jenis_ban);
             tirerim.keadaan_ban = convert.convertToBool(tirerim.keadaan_ban);
