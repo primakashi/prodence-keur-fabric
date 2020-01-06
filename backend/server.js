@@ -96,3 +96,7 @@ brake(app);
 const feasibility = require('./routes/feasibility');
 
 feasibility(app);
+
+const steering = require('./routes/steering');
+
+steering(app);
